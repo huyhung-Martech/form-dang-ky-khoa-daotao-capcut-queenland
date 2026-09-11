@@ -1348,147 +1348,441 @@ body {
 }
 
 /* ==========================================================================
-   STRICT MOBILE DENSITY RULES (< 600px)
+   RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   ========================================================================== */
+
+/* Tablet & Small Laptop (<= 992px) */
+@media (max-width: 992px) {
+  .agenda-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .venues-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* ==========================================================================
+   STRICT MOBILE DENSITY RULES (< 600px) - COMPLIANT WITH AGENTS.MD
    ========================================================================== */
 @media (max-width: 600px) {
-  /* 1. Compact Section Spacing: 24px - 35px */
+  /* Global Container Padding */
+  .container {
+    padding: 0 14px !important;
+  }
+
+  /* 1. Compact Section Spacing: 24px - 32px */
   .section {
-    padding: 28px 0;
+    padding: 26px 0 !important;
   }
   
   .hero-section {
-    padding: 34px 0 24px 0;
+    padding: 24px 0 20px 0 !important;
   }
   
   /* Space above titles, forms & footer <= 30px */
   .section-header {
-    margin-bottom: 20px;
+    margin-bottom: 18px !important;
   }
-  
-  .form-wrapper {
-    padding: 22px 16px;
-  }
-  
-  .site-footer {
-    padding: 24px 0;
-  }
-  
-  /* 2. Compact Headings & Tight Line-height */
-  .hero-title {
-    font-size: 1.72rem;
-    line-height: 1.22;
+
+  .section-tag {
+    font-size: 0.7rem !important;
+    padding: 3px 10px !important;
+    margin-bottom: 6px !important;
   }
   
   .section-title, .form-title {
-    font-size: 1.38rem;
-    line-height: 1.25;
+    font-size: 1.32rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 4px !important;
   }
   
-  .hero-desc {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 20px;
-  }
-  
-  .section-subtitle {
-    font-size: 0.8rem;
-    line-height: 1.38;
-  }
-  
-  /* 3. 2-COLUMN GRID on Mobile for Stats & Cards */
-  .hero-stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .stat-counters-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-  
-  .stat-mini-card {
-    padding: 12px;
-    gap: 8px;
-  }
-  
-  .stat-num {
-    font-size: 0.84rem;
-  }
-  
-  .stat-lbl {
-    font-size: 0.7rem;
-  }
-  
-  .counter-card {
-    padding: 12px 14px;
-  }
-  
-  .counter-value {
-    font-size: 1.55rem;
-  }
-  
-  /* Form on mobile */
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-  
-  /* Agenda, Venue & Prep Card Padding: 12px - 20px */
-  .agenda-cards-grid,
-  .venues-grid,
-  .prep-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .agenda-card,
-  .venue-card,
-  .prep-card {
-    padding: 14px 16px;
-  }
-  
-  .card-bullet-list {
-    gap: 8px;
-  }
-  
-  .card-bullet-list li {
-    font-size: 0.8rem;
-    line-height: 1.38;
-  }
-  
-  /* Dashboard layout */
-  .dashboard-main-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  
-  .dash-panel {
-    padding: 16px;
-  }
-  
-  /* Navigation & Brand on Mobile */
-  .brand-logo {
-    height: 32px;
-    max-width: 130px;
-  }
-  
-  .brand-title {
-    font-size: 0.82rem;
+  .section-subtitle, .form-subtitle {
+    font-size: 0.8rem !important;
+    line-height: 1.38 !important;
   }
 
-  .nav-links .nav-link:not(.cta-btn):not(.admin-lock-btn) {
-    display: none;
+  /* 2. Compact Navbar */
+  .navbar {
+    padding: 10px 0 !important;
   }
-  
+
+  .nav-container {
+    padding: 0 14px !important;
+  }
+
+  .brand {
+    gap: 6px;
+  }
+
+  .brand-logo {
+    height: 30px !important;
+    max-width: 120px !important;
+  }
+
+  .brand-divider,
+  .brand-title {
+    display: none !important;
+  }
+
+  .nav-links .nav-link:not(.cta-btn) {
+    display: none !important;
+  }
+
+  .admin-lock-btn {
+    display: none !important;
+  }
+
+  .cta-btn {
+    padding: 7px 14px !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+  }
+
+  /* 3. Hero Section Typography & Actions */
+  .badge-row {
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .pill-badge {
+    font-size: 0.7rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .hero-title {
+    font-size: 1.62rem !important;
+    line-height: 1.22 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .desktop-br {
+    display: none !important;
+  }
+
+  .hero-desc {
+    font-size: 0.84rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Full-width Stacked Hero CTA Buttons */
+  .hero-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* 4. 2-COLUMN GRID for Stats Cards */
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .stat-mini-card {
+    padding: 10px 10px !important;
+    gap: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .stat-icon {
+    font-size: 1.25rem !important;
+  }
+
+  .stat-num {
+    font-size: 0.82rem !important;
+  }
+
+  .stat-lbl {
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .stat-counters-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .counter-card {
+    padding: 10px 12px !important;
+  }
+
+  .counter-value {
+    font-size: 1.45rem !important;
+  }
+
+  /* 5. Agenda Cards on Mobile */
+  .agenda-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .agenda-card {
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .card-header {
+    margin-bottom: 8px !important;
+  }
+
+  .session-tag {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .session-pic {
+    font-size: 0.7rem !important;
+  }
+
+  .card-title {
+    font-size: 1.05rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .card-summary {
+    font-size: 0.8rem !important;
+    line-height: 1.38 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .card-bullet-list {
+    gap: 6px !important;
+  }
+
+  .card-bullet-list li {
+    font-size: 0.78rem !important;
+    line-height: 1.36 !important;
+    padding-left: 14px !important;
+  }
+
+  .card-outcome {
+    margin-top: 10px !important;
+    padding: 8px 10px !important;
+    font-size: 0.76rem !important;
+    line-height: 1.34 !important;
+  }
+
+  /* 6. Schedule Venues on Mobile */
+  .venues-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .venue-card {
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .venue-badge {
+    font-size: 0.68rem !important;
+    padding: 3px 9px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .venue-name {
+    font-size: 1.1rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .venue-address {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .venue-dates {
+    padding: 10px 12px !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+  }
+
+  .b-pill {
+    font-size: 0.66rem !important;
+    min-width: 44px !important;
+    padding: 2px 6px !important;
+  }
+
+  .date-txt {
+    font-size: 0.78rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .venue-footer {
+    font-size: 0.74rem !important;
+  }
+
+  /* 7. PREPARATION SECTION: 2-COLUMN GRID (Per AGENTS.md) */
+  .prep-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .prep-card {
+    flex-direction: column !important;
+    padding: 12px 10px !important;
+    gap: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .prep-icon-box {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.25rem !important;
+    border-radius: 8px !important;
+  }
+
+  .prep-title {
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .prep-list {
+    gap: 4px !important;
+  }
+
+  .prep-list li {
+    font-size: 0.72rem !important;
+    line-height: 1.34 !important;
+    padding-left: 10px !important;
+  }
+
+  .prep-list li::before {
+    font-size: 0.85rem !important;
+    top: -2px !important;
+  }
+
+  /* 8. Registration Form on Mobile */
+  .form-wrapper {
+    padding: 20px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .form-header {
+    margin-bottom: 16px !important;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .input-group label {
+    font-size: 0.82rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 11px 12px !important;
+    font-size: 16px !important; /* Prevents iOS Safari auto-zoom on tap */
+    border-radius: 8px !important;
+  }
+
+  .btn-submit {
+    width: 100% !important;
+    padding: 13px 18px !important;
+    font-size: 0.92rem !important;
+    font-weight: 800 !important;
+    border-radius: 10px !important;
+  }
+
+  .privacy-note {
+    font-size: 0.74rem !important;
+    margin-top: 8px !important;
+  }
+
+  /* 9. Footer on Mobile */
+  .site-footer {
+    padding: 22px 0 !important;
+  }
+
   .footer-content {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 14px !important;
   }
-  
+
+  .footer-logo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 4px !important;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem !important;
+    line-height: 1.36 !important;
+  }
+
   .footer-right {
-    text-align: center;
+    text-align: center !important;
+  }
+
+  .hotline {
+    font-size: 0.78rem !important;
+  }
+
+  .rights {
+    font-size: 0.72rem !important;
+    margin-top: 4px !important;
+  }
+
+  .footer-admin-row {
+    margin-top: 8px !important;
+  }
+
+  .footer-admin-link {
+    font-size: 0.74rem !important;
+    color: var(--primary-cyan) !important;
+    text-decoration: none !important;
+    padding: 4px 10px !important;
+    background: rgba(2, 132, 199, 0.08) !important;
+    border-radius: 6px !important;
+    display: inline-block !important;
+  }
+
+  /* Admin Dashboard Layout on Mobile */
+  .dashboard-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .dash-panel {
+    padding: 14px !important;
+  }
+}
+
+/* Ultra-Compact Screens (<= 360px, e.g. iPhone SE 1st gen) */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.45rem !important;
+  }
+
+  .prep-grid {
+    grid-template-columns: 1fr !important;
   }
 }
