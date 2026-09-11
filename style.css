@@ -104,8 +104,8 @@ body {
 }
 
 .brand-logo {
-  height: 36px;
-  max-width: 140px;
+  height: 40px;
+  max-width: 180px;
   object-fit: contain;
   display: block;
 }
@@ -1469,7 +1469,16 @@ body {
     padding: 16px;
   }
   
-  /* Navigation */
+  /* Navigation & Brand on Mobile */
+  .brand-logo {
+    height: 32px;
+    max-width: 130px;
+  }
+  
+  .brand-title {
+    font-size: 0.82rem;
+  }
+
   .nav-links .nav-link:not(.cta-btn):not(.admin-lock-btn) {
     display: none;
   }
