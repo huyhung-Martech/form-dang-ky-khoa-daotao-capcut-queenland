@@ -220,14 +220,16 @@ function handleFormSubmit(e) {
 
 // Sync to Google Sheets Webhook
 function syncToGoogleSheets(data) {
-  if (!GOOGLE_SHEETS_WEBHOOK_URL) return;
+  const webhookUrl = (typeof GOOGLE_SHEETS_WEBHOOK_URL !== 'undefined' && GOOGLE_SHEETS_WEBHOOK_URL) 
+    || localStorage.getItem('queenland_google_sheets_webhook');
+  if (!webhookUrl) return;
 
   try {
-    fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+    fetch(webhookUrl, {
       method: 'POST',
       mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'text/plain;charset=utf-8'
       },
       body: JSON.stringify(data)
     }).catch(err => console.log('Google Sheets sync notice:', err));

@@ -12,7 +12,7 @@ Chỉ với 3 bước đơn giản (mất khoảng 2 phút), mỗi khi học vi�
    * **Cột B:** Họ và Tên
    * **Cột C:** Số Điện Thoại
    * **Cột D:** Đội Nhóm / Khối Kinh Doanh
-   * **Cột E:** Cơ Sở Học
+   * **Cột E:** Địa Điểm Đào Tạo
    * **Cột F:** Link TikTok
    * **Cột G:** Kỳ Vọng / Mục Tiêu
    * **Cột H:** Thời Gian Đăng Ký
@@ -85,5 +85,5 @@ Bấm lưu lại là xong! Giờ đây mỗi khi có ai đăng ký trên web, m�
 
 ### 💡 MẸO TẠO BIỂU ĐỒ & BÁO CÁO TRÊN GOOGLE SHEETS
 1. **Biểu đồ tỷ lệ đội nhóm:** Bôi đen Cột D (Đội Nhóm) $\rightarrow$ Bấm **Chèn** $\rightarrow$ **Biểu đồ** $\rightarrow$ Chọn Biểu đồ tròn (Pie Chart) hoặc Biểu đồ cột.
-2. **Biểu đồ tỷ lệ cơ sở học:** Bôi đen Cột E (Cơ Sở Học) $\rightarrow$ Bấm **Chèn** $\rightarrow$ **Biểu đồ**.
+2. **Biểu đồ tỷ lệ địa điểm đào tạo:** Bôi đen Cột E (Địa Điểm Đào Tạo) $\rightarrow$ Bấm **Chèn** $\rightarrow$ **Biểu đồ**.
 Google Sheet sẽ tự động đếm số lượng người tham gia theo từng khối và vẽ đồ thị chuyên nghiệp, đẹp mắt cho bạn báo cáo!
