@@ -22,7 +22,7 @@
       </div>
       <nav class="nav-links">
         <a href="#agenda" class="nav-link" id="navAgendaLink">Lộ Trình 3 Buổi</a>
-        <a href="#schedule" class="nav-link" id="navScheduleLink">Lịch Học & Cơ Sở</a>
+        <a href="#schedule" class="nav-link" id="navScheduleLink">Lịch Học & Địa Điểm</a>
         <a href="#preparation" class="nav-link" id="navPrepLink">Chuẩn Bị</a>
         <a href="#register" class="nav-link cta-btn" id="navRegisterLink">Đăng Ký Ngay</a>
         <a href="admin.html" class="admin-lock-btn" id="navAdminLink" title="Chỉ dành cho Ban Quản Trị & P. Digital Marketing">
@@ -158,16 +158,16 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">LỊCH HỌC & ĐỊA ĐIỂM</span>
-        <h2 class="section-title">2 CƠ SỞ ĐÀO TẠO (CA SÁNG)</h2>
+        <h2 class="section-title">2 ĐỊA ĐIỂM ĐÀO TẠO (CA SÁNG)</h2>
         <p class="section-subtitle">Lựa chọn địa điểm học thuận tiện nhất với khu vực làm việc của bạn</p>
       </div>
 
       <div class="venues-grid" id="venuesGrid">
-        <!-- Venue 1: Technopark -->
-        <div class="venue-card" id="venueTechnopark">
+        <!-- Venue 1: 35 Lê Văn Lương (Đợt 1) -->
+        <div class="venue-card" id="venueLeVanLuong">
           <div class="venue-badge">ĐỢT 1 • 15/09 - 22/09</div>
-          <h3 class="venue-name">TÒA NHÀ TECHNOPARK</h3>
-          <p class="venue-address">📍 Đại đô thị Vinhomes Ocean Park (Gia Lâm, Hà Nội)</p>
+          <h3 class="venue-name">TRỤ SỞ 35 LÊ VĂN LƯƠNG</h3>
+          <p class="venue-address">📍 Tầng phòng đào tạo Queen Land, 35 Lê Văn Lương (Thanh Xuân, HN)</p>
           <div class="venue-dates">
             <div class="date-row">
               <span class="b-pill">Buổi 1</span>
@@ -183,15 +183,15 @@
             </div>
           </div>
           <div class="venue-footer">
-            <span>☕ Có teabreak & Bãi đỗ xe thuận tiện</span>
+            <span>☕ Có teabreak & Phòng đào tạo chuẩn âm thanh</span>
           </div>
         </div>
 
-        <!-- Venue 2: 35 Lê Văn Lương -->
-        <div class="venue-card" id="venueLeVanLuong">
+        <!-- Venue 2: TechnoPark (Đợt 2) -->
+        <div class="venue-card" id="venueTechnopark">
           <div class="venue-badge alt">ĐỢT 2 • 23/09 - 30/09</div>
-          <h3 class="venue-name">TRỤ SỞ 35 LÊ VĂN LƯƠNG</h3>
-          <p class="venue-address">📍 Tầng phòng đào tạo Queen Land, 35 Lê Văn Lương (Thanh Xuân, HN)</p>
+          <h3 class="venue-name">TÒA NHÀ TECHNOPARK</h3>
+          <p class="venue-address">📍 Đại đô thị Vinhomes Ocean Park (Gia Lâm, Hà Nội)</p>
           <div class="venue-dates">
             <div class="date-row">
               <span class="b-pill">Buổi 1</span>
@@ -207,7 +207,7 @@
             </div>
           </div>
           <div class="venue-footer">
-            <span>☕ Có teabreak & Phòng đào tạo chuẩn âm thanh</span>
+            <span>☕ Có teabreak & Bãi đỗ xe thuận tiện</span>
           </div>
         </div>
       </div>
@@ -313,15 +313,15 @@
               <span class="error-msg" id="errTeamInput">Vui lòng nhập khối hoặc đội nhóm của bạn</span>
             </div>
 
-            <!-- Địa điểm tham gia -->
+            <!-- Địa điểm đào tạo -->
             <div class="input-group">
-              <label for="venueSelect">Cơ sở đăng ký tham gia <span class="required">*</span></label>
+              <label for="venueSelect">Địa điểm đào tạo đăng ký tham gia <span class="required">*</span></label>
               <select id="venueSelect" name="venueSelect" required>
-                <option value="" disabled selected>-- Chọn cơ sở học thuận tiện nhất --</option>
-                <option value="TechnoPark (15/09 - 22/09)">Tòa TechnoPark (Đợt 1: 15/09 - 22/09)</option>
-                <option value="35 Lê Văn Lương (23/09 - 30/09)">35 Lê Văn Lương (Đợt 2: 23/09 - 30/09)</option>
+                <option value="" disabled selected>-- Chọn địa điểm đào tạo thuận tiện nhất --</option>
+                <option value="35 Lê Văn Lương (Đợt 1: 15/09 - 22/09)">35 Lê Văn Lương (Đợt 1: 15/09 - 22/09)</option>
+                <option value="TechnoPark (Đợt 2: 23/09 - 30/09)">Tòa TechnoPark (Đợt 2: 23/09 - 30/09)</option>
               </select>
-              <span class="error-msg" id="errVenueSelect">Vui lòng chọn cơ sở học</span>
+              <span class="error-msg" id="errVenueSelect">Vui lòng chọn địa điểm đào tạo</span>
             </div>
 
             <!-- Link TikTok hiện tại -->
@@ -360,7 +360,7 @@
           </p>
           <div class="reg-summary-box">
             <div class="summary-line"><span>Mã ghi danh:</span> <strong id="successId" class="code-pill">QL-TK-001</strong></div>
-            <div class="summary-line"><span>Cơ sở học:</span> <strong id="successVenue">TechnoPark</strong></div>
+            <div class="summary-line"><span>Địa điểm đào tạo:</span> <strong id="successVenue">TechnoPark</strong></div>
             <div class="summary-line"><span>Đội nhóm:</span> <strong id="successTeam">Khối KD 1</strong></div>
           </div>
           <div class="success-actions">

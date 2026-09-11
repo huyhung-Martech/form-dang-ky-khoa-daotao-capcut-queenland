@@ -12,9 +12,9 @@ Hệ thống Landing Page Đăng Ký và Bảng Quản Trị Thống Kê Ghi Dan
   * **Buổi 1:** *Giọng Nói Triệu Đô & Kịch Bản Giữ Chân* (Luyện hơi bụng, nhả chữ, ngữ điệu Hook, AI viết kịch bản BĐS & gom tài nguyên số).
   * **Buổi 2:** *Làm Chủ Ống Kính – Thần Thái Chuyên Gia* (Phong thái diễn, quay điện thoại, AE/AF Lock, Ninja Walk, bấm máy thực tế).
   * **Buổi 3:** *Phù Thủy CapCut – Bật Kênh Ra Deal* (Jump cut, Auto Sub, chèn B-roll, ảnh bìa Canva, xuất bản TikTok kéo khách).
-* **Lịch học & Địa điểm 2 cơ sở (Ca Sáng):**
-  * *Đợt 1:* Tòa TechnoPark Tower (Vinhomes Ocean Park) [15/09 - 22/09].
-  * *Đợt 2:* Trụ sở 35 Lê Văn Lương (Thanh Xuân, Hà Nội) [23/09 - 30/09].
+* **Lịch học & 2 Địa điểm đào tạo (Ca Sáng):**
+  * *Đợt 1:* Trụ sở 35 Lê Văn Lương (Thanh Xuân, Hà Nội) [15/09 - 22/09].
+  * *Đợt 2:* Tòa TechnoPark Tower (Vinhomes Ocean Park) [23/09 - 30/09].
 * **Form ghi danh tiện lợi:** Cho phép tự nhập tên Khối/Đội nhóm kinh doanh tự do, kiểm tra số điện thoại chuẩn Việt Nam và cấp Mã ghi danh tự động.
 
 ### 2. Trang Quản Trị Riêng Tư (`admin.html`)
