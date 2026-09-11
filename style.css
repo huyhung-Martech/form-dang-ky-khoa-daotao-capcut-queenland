@@ -1545,8 +1545,16 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
     display: none !important;
   }
 
+  .nav-links {
+    gap: 8px !important;
+  }
+
   .admin-lock-btn {
-    display: none !important;
+    display: inline-flex !important;
+    padding: 6px 10px !important;
+    font-size: 0.76rem !important;
+    border-radius: 8px !important;
+    gap: 4px !important;
   }
 
   .cta-btn {
