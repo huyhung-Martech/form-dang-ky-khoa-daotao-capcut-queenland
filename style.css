@@ -103,6 +103,20 @@ body {
   gap: 10px;
 }
 
+.brand-logo {
+  height: 36px;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-divider {
+  color: #CBD5E1;
+  font-weight: 300;
+  font-size: 1.1rem;
+  margin: 0 2px;
+}
+
 .brand-badge {
   background: linear-gradient(135deg, #0284C7, #2563EB);
   color: #FFF;
@@ -114,7 +128,7 @@ body {
 }
 
 .brand-title {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--text-main);
@@ -570,6 +584,96 @@ body {
 .venue-footer {
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+/* ==========================================================================
+   PREPARATION REQUIREMENTS SECTION
+   ========================================================================== */
+.prep-section {
+  background: linear-gradient(180deg, rgba(241, 245, 249, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.prep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.prep-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  display: flex;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.prep-card:hover {
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.prep-icon-box {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  background: #EFF6FF;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(2, 132, 199, 0.15);
+}
+
+.prep-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.prep-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.prep-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prep-list li {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.42;
+  position: relative;
+  padding-left: 14px;
+}
+
+.prep-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--primary-cyan);
+  font-size: 1.1rem;
+}
+
+.prep-list strong {
+  color: var(--text-main);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -1332,16 +1436,18 @@ body {
     margin-bottom: 18px;
   }
   
-  /* Agenda & Venue Card Padding: 12px - 20px */
+  /* Agenda, Venue & Prep Card Padding: 12px - 20px */
   .agenda-cards-grid,
-  .venues-grid {
+  .venues-grid,
+  .prep-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
   
   .agenda-card,
-  .venue-card {
-    padding: 16px 18px;
+  .venue-card,
+  .prep-card {
+    padding: 14px 16px;
   }
   
   .card-bullet-list {

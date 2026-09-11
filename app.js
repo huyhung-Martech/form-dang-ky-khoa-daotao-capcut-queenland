@@ -16,7 +16,7 @@ const GOOGLE_SHEETS_WEBHOOK_URL = "";
 
 // Optional Sample Data (chỉ nạp khi người dùng bấm nút "Nạp Dữ Liệu Mẫu" trong Admin)
 const SAMPLE_REGISTRATIONS = [
-  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", team: "Khối Kinh Doanh 1", venue: "TechnoPark (15/09 - 22/09)", tiktokLink: "tiktok.com/@hoangbds", goal: "Kéo data khách hàng nét và chốt deal từ TikTok", timestamp: "2026-09-11 08:30" },
+  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", team: "Khối Kinh Doanh 1", venue: "TechnoPark (15/09 - 22/09)", tiktokLink: "tiktok.com/@hoangbds", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-11 08:30" },
   { id: "QL-TK-002", fullName: "Lê Thu Hà", phoneNumber: "0912456789", team: "Khối Kinh Doanh 1", venue: "TechnoPark (15/09 - 22/09)", tiktokLink: "", goal: "Luyện giọng nói nội lực, hết run khi lên hình", timestamp: "2026-09-11 08:45" },
   { id: "QL-TK-003", fullName: "Nguyễn Văn Đức", phoneNumber: "0977889900", team: "Khối Kinh Doanh 2", venue: "35 Lê Văn Lương (23/09 - 30/09)", tiktokLink: "tiktok.com/@ducqueenland", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-11 09:00" },
   { id: "QL-TK-004", fullName: "Phạm Thúy Vy", phoneNumber: "0904112233", team: "Team Queen Land Ocean Park", venue: "TechnoPark (15/09 - 22/09)", tiktokLink: "", goal: "Làm chủ kỹ thuật quay điện thoại chuẩn chuyên nghiệp", timestamp: "2026-09-11 09:15" },
