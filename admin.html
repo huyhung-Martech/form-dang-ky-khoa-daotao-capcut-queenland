@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Quản Trị & Thống Kê Đào Tạo TikTok 2026 | Queen Land</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #F8FAFC;">
+
+  <!-- PIN Protection Gate (Modal) -->
+  <div class="pin-gate-modal" id="pinGateModal" style="display: flex;">
+    <div class="pin-modal-content">
+      <div class="pin-icon">🔐</div>
+      <h3 class="pin-title">XÁC THỰC QUẢN TRỊ VIÊN</h3>
+      <p class="pin-desc">Trang này chỉ dành cho Ban Tổ Chức & Phòng Marketing. Vui lòng nhập mã PIN bảo mật.</p>
+      <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="6" autofocus>
+      <div class="pin-error" id="pinErrorMsg">Mã PIN không chính xác! (Mặc định: 2026)</div>
+      <button class="pin-btn" id="btnUnlockAdmin">MỞ KHÓA BẢNG QUẢN TRỊ</button>
+      <p style="font-size: 0.72rem; color: #94A3B8; margin-top: 14px;">Mã PIN mặc định: <strong>2026</strong> (Bạn có thể đổi trong file code)</p>
+      <div style="margin-top: 12px;">
+        <a href="index.html" style="font-size: 0.8rem; color: var(--primary-cyan); text-decoration: none;">← Quay lại trang đăng ký</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Admin Interface (Hidden until PIN is correct) -->
+  <div id="adminMainContent" style="display: none;">
+    <!-- Navigation Bar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <div class="brand">
+          <span class="brand-badge" style="background: #10B981;">ADMIN PORTAL</span>
+          <span class="brand-title">QUEEN LAND • QUẢN LÝ ĐÀO TẠO</span>
+        </div>
+        <nav class="nav-links">
+          <a href="index.html" class="nav-link" target="_blank">🔗 Xem Trang Đăng Ký</a>
+          <button id="btnLockAdmin" class="admin-lock-btn" style="cursor: pointer;">
+            <span>🔒 Khóa Trang</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="section" style="padding-top: 35px;">
+      <div class="container">
+        <div class="section-header">
+          <div class="admin-badge-row">
+            <span class="admin-shield-badge">🛡️ KHU VỰC BẢO MẬT NỘI BỘ P. MKT</span>
+          </div>
+          <h1 class="section-title">BẢNG THỐNG KÊ & TIẾN ĐỘ ĐĂNG KÝ</h1>
+          <p class="section-subtitle">Theo dõi số lượng học viên ghi danh theo từng khối kinh doanh và cơ sở đào tạo</p>
+        </div>
+
+        <!-- 4 Stat Counters Grid (2-col mobile compliant) -->
+        <div class="stat-counters-grid" id="statCountersGrid">
+          <div class="counter-card" id="counterTotal">
+            <div class="card-top">
+              <span class="counter-label">Tổng Học Viên</span>
+              <span class="counter-badge">Toàn Cty</span>
+            </div>
+            <div class="counter-value" id="valTotalRegistered">0</div>
+            <div class="counter-sub">Chỉ tiêu dự kiến: 80 nhân sự</div>
+          </div>
+
+          <div class="counter-card" id="counterTechnopark">
+            <div class="card-top">
+              <span class="counter-label">Tòa TechnoPark</span>
+              <span class="counter-badge b1">Đợt 1</span>
+            </div>
+            <div class="counter-value" id="valTechnoparkCount">0</div>
+            <div class="counter-sub" id="pctTechnopark">0% tổng số</div>
+          </div>
+
+          <div class="counter-card" id="counterLeVanLuong">
+            <div class="card-top">
+              <span class="counter-label">35 Lê Văn Lương</span>
+              <span class="counter-badge b2">Đợt 2</span>
+            </div>
+            <div class="counter-value" id="valLeVanLuongCount">0</div>
+            <div class="counter-sub" id="pctLeVanLuong">0% tổng số</div>
+          </div>
+
+          <div class="counter-card highlight" id="counterTopTeam">
+            <div class="card-top">
+              <span class="counter-label">Team Dẫn Đầu</span>
+              <span class="counter-badge gold">🏆 TOP 1</span>
+            </div>
+            <div class="counter-value team-name" id="valTopTeamName">Chưa có</div>
+            <div class="counter-sub" id="valTopTeamCount">0 học viên</div>
+          </div>
+        </div>
+
+        <!-- Team Progress & Admin Actions -->
+        <div class="dashboard-main-grid">
+          <!-- Team Breakdown Progress Bars -->
+          <div class="dash-panel" id="teamBreakdownPanel">
+            <div class="panel-header">
+              <h3 class="panel-title">Tỷ Lệ Đăng Ký Theo Đội Nhóm Kinh Doanh</h3>
+              <span class="panel-hint">Tự động gom nhóm theo tên đội nhóm học viên tự nhập</span>
+            </div>
+            <div class="team-progress-list" id="teamProgressList">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Quick Admin Tooling & Export -->
+          <div class="dash-panel admin-actions-panel" id="adminControlPanel">
+            <div class="panel-header">
+              <h3 class="panel-title">Thao Tác Quản Trị & Xuất File</h3>
+              <span class="panel-hint">Báo cáo Ban Giám Đốc & Offline</span>
+            </div>
+            <div class="admin-buttons-list">
+              <button class="btn-export" id="btnExportExcel">
+                <span class="btn-icon">📥</span>
+                <div class="btn-info">
+                  <strong>Xuất File Excel (.xlsx / .csv)</strong>
+                  <small>Tải danh sách chi tiết về máy tính ngay lập tức</small>
+                </div>
+              </button>
+              
+              <button class="btn-sample" id="btnLoadSampleData">
+                <span class="btn-icon">⚡</span>
+                <div class="btn-info">
+                  <strong>Nạp Dữ Liệu Mẫu (Demo)</strong>
+                  <small>Mô phỏng 12 học viên từ các khối để xem thử biểu đồ</small>
+                </div>
+              </button>
+              
+              <button class="btn-clear" id="btnClearData">
+                <span class="btn-icon">🗑️</span>
+                <div class="btn-info">
+                  <strong>Xóa / Đặt Lại Danh Sách</strong>
+                  <small>Xóa dữ liệu để chuẩn bị đón nhận data đăng ký thật</small>
+                </div>
+              </button>
+            </div>
+
+            <!-- Google Sheet Webhook Sync Info -->
+            <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                <span style="font-size: 1.1rem;">📊</span>
+                <strong style="font-size: 0.82rem; color: #166534;">Đẩy Thẳng Về Google Sheets</strong>
+              </div>
+              <p style="font-size: 0.74rem; color: #15803D; line-height: 1.4;">
+                Dữ liệu khi học viên bấm đăng ký có thể tự động đẩy thẳng về file Google Sheet của bạn (kèm bảng thống kê và biểu đồ tròn tự động cập nhật).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Registrations Table -->
+        <div class="dash-panel full-width-panel" id="registrationsTablePanel">
+          <div class="table-top-bar">
+            <div class="table-title-area">
+              <h3 class="panel-title">Danh Sách Học Viên Đã Ghi Danh</h3>
+              <span class="badge-count" id="tableRecordCount">0 bản ghi</span>
+            </div>
+            <div class="table-controls">
+              <div class="search-box">
+                <input type="text" id="searchKeyword" placeholder="Tìm theo tên, SĐT, hoặc khối...">
+              </div>
+              <select id="filterVenue" class="filter-select">
+                <option value="ALL">Tất cả cơ sở</option>
+                <option value="TechnoPark (15/09 - 22/09)">TechnoPark</option>
+                <option value="35 Lê Văn Lương (23/09 - 30/09)">35 Lê Văn Lương</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="regDataTable">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">STT</th>
+                  <th>Họ và Tên</th>
+                  <th>Số Điện Thoại</th>
+                  <th>Đội Nhóm / Khối</th>
+                  <th>Cơ Sở Học</th>
+                  <th>Kỳ Vọng / Mục Tiêu</th>
+                  <th>Thời Gian</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="tableEmptyState" style="display: none;">
+            <span class="empty-icon">📂</span>
+            <p>Chưa có học viên nào đăng ký. Hãy gửi link trang chủ cho các đội nhóm!</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <div class="footer-left">
+          <div class="footer-logo">QUEEN LAND • TIKTOK ACADEMY 2026 [ADMIN]</div>
+          <p class="footer-copy">Hệ thống quản trị ghi danh đào tạo nội bộ Phòng Marketing.</p>
+        </div>
+        <div class="footer-right">
+          <p class="rights">© 2026 Queen Land Real Estate. Dành riêng cho Ban Quản Trị.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // PIN Protection Logic (Default PIN: 2026)
+    const CORRECT_PIN = '2026';
+    const pinModal = document.getElementById('pinGateModal');
+    const adminMain = document.getElementById('adminMainContent');
+    const pinInput = document.getElementById('pinInput');
+    const pinError = document.getElementById('pinErrorMsg');
+    const btnUnlock = document.getElementById('btnUnlockAdmin');
+    const btnLock = document.getElementById('btnLockAdmin');
+
+    function checkPin() {
+      if (pinInput.value === CORRECT_PIN) {
+        sessionStorage.setItem('queenland_admin_unlocked', 'true');
+        pinModal.style.display = 'none';
+        adminMain.style.display = 'block';
+        pinError.style.display = 'none';
+        renderApp();
+      } else {
+        pinError.style.display = 'block';
+        pinInput.value = '';
+        pinInput.focus();
+      }
+    }
+
+    btnUnlock.addEventListener('click', checkPin);
+    pinInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkPin();
+    });
+
+    btnLock.addEventListener('click', () => {
+      sessionStorage.removeItem('queenland_admin_unlocked');
+      adminMain.style.display = 'none';
+      pinModal.style.display = 'flex';
+      pinInput.value = '';
+      pinInput.focus();
+    });
+
+    // Auto-unlock if session already verified
+    if (sessionStorage.getItem('queenland_admin_unlocked') === 'true') {
+      pinModal.style.display = 'none';
+      adminMain.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
