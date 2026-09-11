@@ -1,6 +1,6 @@
 # Khóa Đào Tạo: Xây Dựng Kênh TikTok BĐS 2026 | Queen Land
 
-Hệ thống Landing Page Đăng Ký và Bảng Quản Trị Thống Kê Ghi Danh Khóa Đào Tạo Nội Bộ **"Xây Dựng Kênh TikTok BĐS – Từ Con Số 0 Đến Ra Deal"** dành riêng cho chiến binh Sales Công ty Cổ phần Tập đoàn Queen Land.
+Hệ thống Landing Page Đăng Ký và Bảng Quản Trị Thống Kê Ghi Danh Khóa Đào Tạo Nội Bộ **"Xây Dựng Kênh TikTok BĐS – Từ Con Số 0"** dành riêng cho chiến binh Sales Công ty Cổ phần Tập đoàn Queen Land.
 
 ---
 
