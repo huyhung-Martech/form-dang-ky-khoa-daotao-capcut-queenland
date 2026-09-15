@@ -172,6 +172,11 @@
                 <option value="35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)">35 Lê Văn Lương (Đợt 1)</option>
                 <option value="TechnoPark (Đợt 2: Tuần kế tiếp)">TechnoPark (Đợt 2)</option>
               </select>
+              <select id="filterSubmission" class="filter-select">
+                <option value="ALL">Tất cả tiến độ nộp</option>
+                <option value="SUBMITTED">✅ Đã nộp video</option>
+                <option value="PENDING">⏳ Chưa nộp video</option>
+              </select>
             </div>
           </div>
 
@@ -179,11 +184,12 @@
             <table class="data-table" id="regDataTable">
               <thead>
                 <tr>
-                  <th style="width: 50px;">STT</th>
+                  <th style="width: 45px;">STT</th>
                   <th>Họ và Tên</th>
-                  <th>Số Điện Thoại</th>
+                  <th>Số Điện Thoại (Mã ID)</th>
                   <th>Đội Nhóm / Khối</th>
                   <th>Địa Điểm Đào Tạo</th>
+                  <th style="min-width: 140px;">Trạng Thái Nộp Video</th>
                   <th>Kỳ Vọng / Mục Tiêu</th>
                   <th>Thời Gian</th>
                 </tr>

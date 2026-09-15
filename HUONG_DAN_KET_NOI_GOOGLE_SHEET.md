@@ -10,12 +10,13 @@ Chỉ với 3 bước đơn giản (mất khoảng 2 phút), mỗi khi học vi�
 3. Đổi tên sheet thành `DangKy` và đặt hàng tiêu đề tại Dòng 1:
    * **Cột A:** Mã Ghi Danh
    * **Cột B:** Họ và Tên
-   * **Cột C:** Số Điện Thoại
+   * **Cột C:** Số Điện Thoại *(Khóa định danh chính)*
    * **Cột D:** Đội Nhóm / Khối Kinh Doanh
    * **Cột E:** Địa Điểm Đào Tạo
    * **Cột F:** Link TikTok
    * **Cột G:** Kỳ Vọng / Mục Tiêu
    * **Cột H:** Thời Gian Đăng Ký
+   * **Cột I:** Trạng Thái Nộp Video *(Tự động đối soát bằng SĐT)*
 
 ---
 
@@ -34,6 +35,10 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
     
     // Thêm một dòng mới với dữ liệu học viên vừa gửi
+    // Cột I đặt sẵn công thức kiểm tra trạng thái nộp theo SĐT (Cột C)
+    var nextRow = sheet.getLastRow() + 1;
+    var formulaNop = '=IF(C' + nextRow + '="","", IF(COUNTIF(NopBai!B:B, C' + nextRow + ')>0, "✅ ĐÃ NỘP", "⏳ CHƯA NỘP"))';
+
     sheet.appendRow([
       data.id || '',
       data.fullName || '',
@@ -42,7 +47,8 @@ function doPost(e) {
       data.venue || '',
       data.tiktokLink || '',
       data.goal || '',
-      data.timestamp || new Date().toLocaleString("vi-VN")
+      data.timestamp || new Date().toLocaleString("vi-VN"),
+      formulaNop // Cột I tự động tính toán trạng thái nộp
     ]);
     
     return ContentService
@@ -83,7 +89,19 @@ Bấm lưu lại là xong! Giờ đây mỗi khi có ai đăng ký trên web, m�
 
 ---
 
-### 💡 MẸO TẠO BIỂU ĐỒ & BÁO CÁO TRÊN GOOGLE SHEETS
-1. **Biểu đồ tỷ lệ đội nhóm:** Bôi đen Cột D (Đội Nhóm) $\rightarrow$ Bấm **Chèn** $\rightarrow$ **Biểu đồ** $\rightarrow$ Chọn Biểu đồ tròn (Pie Chart) hoặc Biểu đồ cột.
-2. **Biểu đồ tỷ lệ địa điểm đào tạo:** Bôi đen Cột E (Địa Điểm Đào Tạo) $\rightarrow$ Bấm **Chèn** $\rightarrow$ **Biểu đồ**.
-Google Sheet sẽ tự động đếm số lượng người tham gia theo từng khối và vẽ đồ thị chuyên nghiệp, đẹp mắt cho bạn báo cáo!
+### BƯỚC 5: CÀI ĐẶT ĐỐI SOÁT NỘP VIDEO TỰ ĐỘNG BẰNG SỐ ĐIỆN THOẠI (Dành cho 150 - 200 người)
+1. **Tạo Sheet thứ 2 tên là `NopBai`:**
+   * Khi bạn tạo Google Form cho học viên nộp video (có câu hỏi: **Số điện thoại** và **Tải tệp lên**), chọn lưu câu trả lời vào chính file Google Sheet này. Đổi tên tab đó thành `NopBai`.
+   * Cột B trong tab `NopBai` sẽ là **Số điện thoại** học viên điền khi nộp.
+2. **Công thức tại Cột I (Sheet `DangKy`):**
+   * Tại ô `I2`, dán công thức sau rồi kéo xuống toàn bộ cột:
+     ```excel
+     =IF(C2="","", IF(COUNTIF(NopBai!B:B, C2) > 0, "✅ ĐÃ NỘP", "⏳ CHƯA NỘP"))
+     ```
+3. **Định dạng màu tự động (Conditional Formatting):**
+   * Chọn toàn bộ Cột I $\rightarrow$ Bấm menu **Định dạng (Format)** $\rightarrow$ **Định dạng có điều kiện (Conditional formatting)**.
+   * Quy tắc 1: Văn bản chứa `ĐÃ NỘP` $\rightarrow$ Tô nền xanh lá nhạt (`#DCFCE7`), chữ xanh đậm.
+   * Quy tắc 2: Văn bản chứa `CHƯA NỘP` $\rightarrow$ Tô nền đỏ nhạt (`#FEF2F2`), chữ đỏ đậm.
+4. **Lọc người chưa nộp trên hội trường:**
+   * Bấm nút Tạo bộ lọc (Filter icon) $\rightarrow$ Tại Cột I chọn chỉ hiện `⏳ CHƯA NỘP`.
+   * Lập tức hiện ra danh sách những nhân sự chưa nộp bài để giảng viên/MC nhắc nhở đích danh!

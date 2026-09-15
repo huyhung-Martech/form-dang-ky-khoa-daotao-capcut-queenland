@@ -16,11 +16,11 @@ const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxXlw
 
 // Optional Sample Data (chỉ nạp khi người dùng bấm nút "Nạp Dữ Liệu Mẫu" trong Admin)
 const SAMPLE_REGISTRATIONS = [
-  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", tiktokLink: "tiktok.com/@hoangbds", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 08:30" },
-  { id: "QL-TK-002", fullName: "Lê Thu Hà", phoneNumber: "0912456789", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", tiktokLink: "", goal: "Luyện giọng nói nội lực, hết run khi lên hình", timestamp: "2026-09-15 08:45" },
-  { id: "QL-TK-003", fullName: "Nguyễn Văn Đức", phoneNumber: "0977889900", team: "Khối Kinh Doanh 2", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", tiktokLink: "tiktok.com/@ducqueenland", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 09:00" },
-  { id: "QL-TK-004", fullName: "Phạm Thúy Vy", phoneNumber: "0904112233", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", tiktokLink: "", goal: "Làm chủ kỹ thuật quay điện thoại chuẩn chuyên nghiệp", timestamp: "2026-09-15 09:15" },
-  { id: "QL-TK-005", fullName: "Hoàng Tuấn Anh", phoneNumber: "0934556677", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", tiktokLink: "tiktok.com/@tuananhvinhomes", goal: "Thành thạo dùng AI viết kịch bản BĐS 60s", timestamp: "2026-09-15 09:30" }
+  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", submissionStatus: "Đã nộp B1", tiktokLink: "tiktok.com/@hoangbds", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 08:30" },
+  { id: "QL-TK-002", fullName: "Lê Thu Hà", phoneNumber: "0912456789", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Luyện giọng nói nội lực, hết run khi lên hình", timestamp: "2026-09-15 08:45" },
+  { id: "QL-TK-003", fullName: "Nguyễn Văn Đức", phoneNumber: "0977889900", team: "Khối Kinh Doanh 2", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Đã nộp B2", tiktokLink: "tiktok.com/@ducqueenland", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 09:00" },
+  { id: "QL-TK-004", fullName: "Phạm Thúy Vy", phoneNumber: "0904112233", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Làm chủ kỹ thuật quay điện thoại chuẩn chuyên nghiệp", timestamp: "2026-09-15 09:15" },
+  { id: "QL-TK-005", fullName: "Hoàng Tuấn Anh", phoneNumber: "0934556677", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Hoàn thành cả 2", tiktokLink: "tiktok.com/@tuananhvinhomes", goal: "Thành thạo dùng AI viết kịch bản BĐS 60s", timestamp: "2026-09-15 09:30" }
 ];
 
 // App State (Mặc định bắt đầu từ danh sách trống 0 học viên)
@@ -82,6 +82,11 @@ function setupEventListeners() {
   const filterVenue = document.getElementById('filterVenue');
   if (filterVenue) {
     filterVenue.addEventListener('change', renderTable);
+  }
+
+  const filterSubmission = document.getElementById('filterSubmission');
+  if (filterSubmission) {
+    filterSubmission.addEventListener('change', renderTable);
   }
 
   const btnExport = document.getElementById('btnExportExcel');
@@ -192,6 +197,7 @@ function handleFormSubmit(e) {
     venue,
     tiktokLink,
     goal,
+    submissionStatus: 'Chưa nộp',
     timestamp: timeStr
   };
 
@@ -205,11 +211,17 @@ function handleFormSubmit(e) {
   // Show success modal/card
   form.style.display = 'none';
   const successCard = document.getElementById('successCard');
-  document.getElementById('successName').textContent = fullName;
-  document.getElementById('successId').textContent = regId;
-  document.getElementById('successVenue').textContent = venue;
-  document.getElementById('successTeam').textContent = team;
-  successCard.style.display = 'block';
+  const elName = document.getElementById('successName');
+  if (elName) elName.textContent = fullName;
+  const elPhone = document.getElementById('successPhone');
+  if (elPhone) elPhone.textContent = phoneClean;
+  const elId = document.getElementById('successId');
+  if (elId) elId.textContent = regId;
+  const elVenue = document.getElementById('successVenue');
+  if (elVenue) elVenue.textContent = venue;
+  const elTeam = document.getElementById('successTeam');
+  if (elTeam) elTeam.textContent = team;
+  if (successCard) successCard.style.display = 'block';
 
   // Smooth scroll to success card
   successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -357,6 +369,9 @@ function renderTable() {
   const filterVenueEl = document.getElementById('filterVenue');
   const filterVenue = filterVenueEl ? filterVenueEl.value : 'ALL';
 
+  const filterSubmissionEl = document.getElementById('filterSubmission');
+  const filterSubmission = filterSubmissionEl ? filterSubmissionEl.value : 'ALL';
+
   // Filter
   const filtered = registrations.filter(r => {
     const matchKeyword = r.fullName.toLowerCase().includes(keyword) || 
@@ -364,7 +379,13 @@ function renderTable() {
                          r.id.toLowerCase().includes(keyword) ||
                          r.team.toLowerCase().includes(keyword);
     const matchVenue = (filterVenue === 'ALL') || (r.venue === filterVenue);
-    return matchKeyword && matchVenue;
+
+    const isSubmitted = r.submissionStatus && r.submissionStatus !== 'Chưa nộp';
+    const matchSubmission = (filterSubmission === 'ALL') ||
+                            (filterSubmission === 'SUBMITTED' && isSubmitted) ||
+                            (filterSubmission === 'PENDING' && !isSubmitted);
+
+    return matchKeyword && matchVenue && matchSubmission;
   });
 
   if (countBadge) countBadge.textContent = `${filtered.length} bản ghi`;
@@ -383,6 +404,12 @@ function renderTable() {
     const venueClass = isTP ? 'venue-tag tp' : 'venue-tag lvl';
     const venueShort = isTP ? 'TechnoPark' : '35 Lê Văn Lương';
 
+    const curStatus = r.submissionStatus || 'Chưa nộp';
+    let statusStyle = 'background: #FEF2F2; color: #991B1B; border-color: #FECACA;';
+    if (curStatus.includes('Đã nộp') || curStatus.includes('Xong') || curStatus.includes('Hoàn thành')) {
+      statusStyle = 'background: #F0FDF4; color: #166534; border-color: #BBF7D0;';
+    }
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong>${idx + 1}</strong></td>
@@ -391,13 +418,21 @@ function renderTable() {
         <small style="color: var(--text-dim);">${r.id}</small>
       </td>
       <td>
-        <a href="tel:${r.phoneNumber}" style="color: var(--primary-cyan); text-decoration: none; font-weight: 700;">
+        <a href="tel:${r.phoneNumber}" style="color: var(--primary-cyan); text-decoration: none; font-weight: 800; font-size: 0.88rem;">
           ${r.phoneNumber}
         </a>
       </td>
       <td><span style="font-weight: 700; color: var(--text-secondary);">${escapeHtml(r.team)}</span></td>
       <td><span class="${venueClass}">${venueShort}</span></td>
-      <td style="max-width: 240px; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(r.goal)}">
+      <td>
+        <select onchange="updateSubmissionStatus('${r.id}', this.value)" style="font-size: 0.74rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; border: 1px solid; cursor: pointer; ${statusStyle}">
+          <option value="Chưa nộp" ${curStatus === 'Chưa nộp' ? 'selected' : ''}>⏳ Chưa nộp</option>
+          <option value="Đã nộp B1" ${curStatus === 'Đã nộp B1' ? 'selected' : ''}>🎬 Đã nộp B1 (Clip A-roll)</option>
+          <option value="Đã nộp B2" ${curStatus === 'Đã nộp B2' ? 'selected' : ''}>🚀 Đã nộp B2 (Link TikTok)</option>
+          <option value="Hoàn thành cả 2" ${curStatus === 'Hoàn thành cả 2' ? 'selected' : ''}>⭐ Hoàn thành cả 2</option>
+        </select>
+      </td>
+      <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(r.goal)}">
         <small style="color: var(--text-secondary);">${escapeHtml(r.goal)}</small>
       </td>
       <td><small style="color: var(--text-dim);">${r.timestamp}</small></td>
@@ -406,6 +441,16 @@ function renderTable() {
   });
 }
 
+// Global helper to update submission status
+window.updateSubmissionStatus = function(regId, newStatus) {
+  const item = registrations.find(r => r.id === regId);
+  if (item) {
+    item.submissionStatus = newStatus;
+    saveData();
+    renderApp();
+  }
+};
+
 // Export Table Data to Excel (CSV with UTF-8 BOM for full Vietnamese support)
 function exportToExcel() {
   if (registrations.length === 0) {
@@ -413,15 +458,16 @@ function exportToExcel() {
     return;
   }
 
-  const headers = ["STT", "Mã Ghi Danh", "Họ và Tên", "Số Điện Thoại", "Đội Nhóm / Khối Kinh Doanh", "Cơ Sở Học", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
+  const headers = ["STT", "Số Điện Thoại (Mã Định Danh)", "Mã Ghi Danh", "Họ và Tên", "Đội Nhóm / Khối Kinh Doanh", "Cơ Sở Học", "Trạng Thái Nộp Video", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
   
   const rows = registrations.map((r, i) => [
     i + 1,
+    `="${r.phoneNumber}"`, // Force Excel to treat phone as text
     `"${r.id}"`,
     `"${r.fullName.replace(/"/g, '""')}"`,
-    `="${r.phoneNumber}"`, // Force Excel to treat phone as text
     `"${r.team.replace(/"/g, '""')}"`,
     `"${r.venue.replace(/"/g, '""')}"`,
+    `"${r.submissionStatus || 'Chưa nộp'}"`,
     `"${(r.tiktokLink || '').replace(/"/g, '""')}"`,
     `"${(r.goal || '').replace(/"/g, '""')}"`,
     `"${r.timestamp}"`
