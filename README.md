@@ -8,13 +8,12 @@ Hệ thống Landing Page Đăng Ký và Bảng Quản Trị Thống Kê Ghi Dan
 
 ### 1. Trang Đăng Ký Học Viên (`index.html`)
 * **Giao diện hiện đại & tươi sáng:** Sử dụng font chữ cao cấp **Google Sans Flex**, thiết kế chuẩn Mobile-First (tối ưu mật độ hiển thị và tốc độ lướt trên điện thoại).
-* **Lộ trình 3 buổi thực chiến:**
-  * **Buổi 1:** *Giọng Nói Triệu Đô & Kịch Bản Giữ Chân* (Luyện hơi bụng, nhả chữ, ngữ điệu Hook, AI viết kịch bản BĐS & gom tài nguyên số).
-  * **Buổi 2:** *Làm Chủ Ống Kính – Thần Thái Chuyên Gia* (Phong thái diễn, quay điện thoại, AE/AF Lock, Ninja Walk, bấm máy thực tế).
-  * **Buổi 3:** *Phù Thủy CapCut – Bật Kênh Ra Deal* (Jump cut, Auto Sub, chèn B-roll, ảnh bìa Canva, xuất bản TikTok kéo khách).
-* **Lịch học & 2 Địa điểm đào tạo (Ca Sáng):**
-  * *Đợt 1:* Trụ sở 35 Lê Văn Lương (Thanh Xuân, Hà Nội) [15/09 - 22/09].
-  * *Đợt 2:* Tòa TechnoPark Tower (Vinhomes Ocean Park) [23/09 - 30/09].
+* **Lộ trình 2 buổi thực chiến tinh gọn (Có Showcase sản phẩm):**
+  * **Buổi 1:** *Khai Mở Giọng Nói, Kịch Bản AI & Bấm Máy Thực Hành Tại Chỗ* (Định vị cá nhân, Luyện hơi bụng 1:1, Kịch bản AI BĐS 60s, Quay A-roll, ★ Showcase sản phẩm đầu tay chiếu trực tiếp lên màn hình lớn).
+  * **Buổi 2:** *Phù Thủy CapCut – Dựng Video Triệu View & Bật Kênh* (Jump cut, Overlays/bản đồ quy hoạch, Auto Caption, Thumbnail Canva, ★ Showcase tổng kết & xuất bản đồng loạt lên TikTok).
+* **Lịch học & 2 Địa điểm đào tạo (Ca Sáng 08:30 - 11:45):**
+  * *Đợt 1:* Trụ sở 35 Lê Văn Lương (Thanh Xuân, Hà Nội) [Thứ Năm 17/09 & Thứ Sáu 18/09/2026].
+  * *Đợt 2:* Tòa TechnoPark Tower (Vinhomes Ocean Park) [Tuần kế tiếp].
 * **Form ghi danh tiện lợi:** Cho phép tự nhập tên Khối/Đội nhóm kinh doanh tự do, kiểm tra số điện thoại chuẩn Việt Nam và cấp Mã ghi danh tự động.
 
 ### 2. Trang Quản Trị Riêng Tư (`admin.html`)

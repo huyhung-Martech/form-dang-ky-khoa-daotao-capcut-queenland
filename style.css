@@ -452,12 +452,12 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
 }
 
 /* ==========================================================================
-   AGENDA 3 SESSIONS
+   AGENDA 2 SESSIONS (DETAILED, MODULE-BASED WITH SHOWCASE)
    ========================================================================== */
 .agenda-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .agenda-card {
@@ -483,10 +483,12 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .session-tag {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   padding: 4px 10px;
@@ -496,7 +498,6 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
 
 .session-tag.b1 { background: #EFF6FF; color: #1D4ED8; }
 .session-tag.b2 { background: #FFFBEB; color: #B45309; }
-.session-tag.b3 { background: #ECFDF5; color: #047857; }
 
 .session-pic {
   font-size: 0.76rem;
@@ -516,40 +517,306 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.45;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-light);
 }
 
-.card-bullet-list {
+/* Modules List */
+.agenda-modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.module-item {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  transition: var(--transition-fast);
+}
+
+.module-item:hover {
+  border-color: rgba(2, 132, 199, 0.3);
+  background: #FFFFFF;
+}
+
+.module-item.priority-module {
+  background: #F8FAFC;
+  border: 1.5px solid rgba(2, 132, 199, 0.4);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.06);
+}
+
+.module-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.module-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #E2E8F0;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.module-badge.focus {
+  background: var(--primary-gradient);
+  color: #FFFFFF;
+}
+
+.module-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  flex: 1;
+  min-width: 180px;
+  line-height: 1.3;
+}
+
+.trainer-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  color: var(--primary-cyan);
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.trainer-tag.highlight {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1D4ED8;
+}
+
+.module-bullets {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
-.card-bullet-list li {
-  font-size: 0.82rem;
+.module-bullets li {
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.45;
+  line-height: 1.4;
   position: relative;
-  padding-left: 18px;
+  padding-left: 14px;
 }
 
-.card-bullet-list li::before {
-  content: "✔";
+.module-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: var(--primary-cyan);
+  font-weight: bold;
+}
+
+.module-practice-box {
+  background: #FFFFFF;
+  border: 1px dashed var(--border-light);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-top: 6px;
+}
+
+.practice-tag {
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-size: 0.76rem;
+}
+
+.module-sub-output {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--text-main);
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  line-height: 1.35;
+}
+
+.module-sub-output.highlight-green {
+  background: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #065F46;
+}
+
+/* Showcase Box (Special Highlight) */
+.showcase-box {
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-top: 4px;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.showcase-box.b1-showcase {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  border: 1.5px solid #FCD34D;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+}
+
+.showcase-box.b2-showcase {
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  border: 1.5px solid #6EE7B7;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12);
+}
+
+.showcase-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.showcase-star-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: #B45309;
+  color: #FFFFFF;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.showcase-star-badge.gold {
+  background: #047857;
+  color: #FFFFFF;
+}
+
+.showcase-pic {
+  font-size: 0.74rem;
+  color: #78350F;
+  font-weight: 700;
+}
+
+.b2-showcase .showcase-pic {
+  color: #065F46;
+}
+
+.showcase-heading {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.showcase-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.showcase-list li {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  position: relative;
+  padding-left: 14px;
+}
+
+.showcase-list li::before {
+  content: "★";
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--primary-cyan);
-  font-size: 0.8rem;
-  font-weight: 900;
+  color: #D97706;
+  font-size: 0.75rem;
 }
 
-.card-bullet-list strong {
-  color: var(--text-main);
+.b2-showcase .showcase-list li::before {
+  color: #059669;
+}
+
+.showcase-result-card {
+  background: #FFFFFF;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.showcase-result-card.gold-border {
+  border-color: #A7F3D0;
+}
+
+.result-title {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #B45309;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+
+.result-title.gold-text {
+  color: #047857;
+}
+
+.result-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.res-pill {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 0.74rem;
   font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.res-pill.gold {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.result-proof {
+  font-size: 0.74rem;
+  color: #B45309;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.result-proof.gold-sub {
+  color: #047857;
+}
+
+.date-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.date-sub-txt {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
 /* ==========================================================================
@@ -1673,16 +1940,17 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
   /* 5. Agenda Cards on Mobile */
   .agenda-cards-grid {
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    gap: 14px !important;
   }
 
   .agenda-card {
-    padding: 14px 16px !important;
+    padding: 14px 14px !important;
     border-radius: 14px !important;
   }
 
   .card-header {
     margin-bottom: 8px !important;
+    gap: 6px !important;
   }
 
   .session-tag {
@@ -1701,26 +1969,116 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
   }
 
   .card-summary {
-    font-size: 0.8rem !important;
+    font-size: 0.78rem !important;
     line-height: 1.38 !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
   }
 
-  .card-bullet-list {
+  .agenda-modules-list {
+    gap: 10px !important;
+  }
+
+  .module-item {
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .module-item-header {
+    margin-bottom: 6px !important;
     gap: 6px !important;
   }
 
-  .card-bullet-list li {
-    font-size: 0.78rem !important;
-    line-height: 1.36 !important;
-    padding-left: 14px !important;
+  .module-badge {
+    font-size: 0.65rem !important;
+    padding: 2px 6px !important;
   }
 
-  .card-outcome {
-    margin-top: 10px !important;
-    padding: 8px 10px !important;
+  .module-title {
+    font-size: 0.84rem !important;
+    line-height: 1.28 !important;
+    min-width: 140px !important;
+  }
+
+  .trainer-tag {
+    font-size: 0.68rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .module-bullets {
+    gap: 4px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .module-bullets li {
     font-size: 0.76rem !important;
-    line-height: 1.34 !important;
+    line-height: 1.35 !important;
+    padding-left: 12px !important;
+  }
+
+  .module-practice-box {
+    padding: 6px 8px !important;
+    font-size: 0.74rem !important;
+    line-height: 1.32 !important;
+    margin-top: 4px !important;
+  }
+
+  .module-sub-output {
+    padding: 5px 8px !important;
+    font-size: 0.74rem !important;
+    line-height: 1.32 !important;
+    margin-top: 6px !important;
+  }
+
+  .showcase-box {
+    padding: 12px 12px !important;
+    border-radius: 12px !important;
+    margin-top: 4px !important;
+  }
+
+  .showcase-star-badge {
+    font-size: 0.66rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .showcase-pic {
+    font-size: 0.68rem !important;
+  }
+
+  .showcase-heading {
+    font-size: 0.88rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .showcase-list {
+    gap: 4px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .showcase-list li {
+    font-size: 0.75rem !important;
+    line-height: 1.35 !important;
+    padding-left: 12px !important;
+  }
+
+  .showcase-result-card {
+    padding: 8px 10px !important;
+  }
+
+  .result-title {
+    font-size: 0.7rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .res-pill {
+    font-size: 0.7rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .result-proof {
+    font-size: 0.7rem !important;
+    line-height: 1.3 !important;
   }
 
   /* 6. Schedule Venues on Mobile */
@@ -1753,20 +2111,32 @@ body, button, input, select, textarea, optgroup, option, label, table, th, td, h
 
   .venue-dates {
     padding: 10px 12px !important;
-    gap: 6px !important;
+    gap: 8px !important;
     margin-bottom: 10px !important;
     border-radius: 10px !important;
+  }
+
+  .date-row {
+    align-items: flex-start !important;
+    gap: 8px !important;
   }
 
   .b-pill {
     font-size: 0.66rem !important;
     min-width: 44px !important;
     padding: 2px 6px !important;
+    margin-top: 1px !important;
   }
 
   .date-txt {
     font-size: 0.78rem !important;
     line-height: 1.3 !important;
+  }
+
+  .date-sub-txt {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+    color: var(--text-dim) !important;
   }
 
   .venue-footer {
