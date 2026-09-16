@@ -12,7 +12,7 @@ const STORAGE_KEY = 'queenland_tiktok_training_live_data';
  * Dán URL Google Apps Script Webhook của bạn vào đây nếu muốn tự động đẩy data về Google Sheets.
  * (Để trống thì hệ thống vẫn lưu trữ an toàn trên máy và Dashboard Admin như bình thường).
  */
-const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxXlwGhcUZFTKAGT4atyzGkoM0-v3Tz_sSak1SCImjmmfxZn6pt5sYOftz3rupj5Nmq/exec"; 
+const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxlwDLK5wag-4XXvYzNv0LlSe-s_Xhim5jmI8s7N-c9DY3aFLvuSwvKy5PXVBf8fLLD/exec"; 
 
 // Optional Sample Data (chỉ nạp khi người dùng bấm nút "Nạp Dữ Liệu Mẫu" trong Admin)
 const SAMPLE_REGISTRATIONS = [
