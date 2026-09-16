@@ -397,22 +397,18 @@
               <span class="error-msg" id="errPhoneNumber">Vui lòng nhập số điện thoại hợp lệ (10 số)</span>
             </div>
 
-            <!-- Phòng/Khối kinh doanh (TỰ NHẬP TỰ DO THEO YÊU CẦU CỦA BẠN) -->
+            <!-- Khối kinh doanh -->
             <div class="input-group">
-              <label for="teamInput">Phòng/Khối kinh doanh <span class="required">*</span></label>
-              <input type="text" id="teamInput" name="teamInput" placeholder="Ví dụ: Khối KD 1, Phòng Dự án 2, Team Smart City..." required>
-              <span class="error-msg" id="errTeamInput">Vui lòng nhập phòng/khối kinh doanh của bạn</span>
+              <label for="divisionInput">Khối kinh doanh <span class="required">*</span></label>
+              <input type="text" id="divisionInput" name="divisionInput" placeholder="Ví dụ: Khối KD 1, Khối KD 2..." required>
+              <span class="error-msg" id="errDivisionInput">Vui lòng nhập khối kinh doanh của bạn</span>
             </div>
 
-            <!-- Địa điểm đào tạo -->
+            <!-- Phòng kinh doanh -->
             <div class="input-group">
-              <label for="venueSelect">Địa điểm đào tạo đăng ký tham gia <span class="required">*</span></label>
-              <select id="venueSelect" name="venueSelect" required>
-                <option value="" disabled selected>-- Chọn địa điểm đào tạo thuận tiện nhất --</option>
-                <option value="35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)">35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)</option>
-                <option value="TechnoPark (Đợt 2: Tuần kế tiếp)">Tòa TechnoPark (Đợt 2: Tuần kế tiếp)</option>
-              </select>
-              <span class="error-msg" id="errVenueSelect">Vui lòng chọn địa điểm đào tạo</span>
+              <label for="departmentInput">Phòng kinh doanh <span class="required">*</span></label>
+              <input type="text" id="departmentInput" name="departmentInput" placeholder="Ví dụ: Phòng Dự án 1, Team Smart City..." required>
+              <span class="error-msg" id="errDepartmentInput">Vui lòng nhập phòng kinh doanh của bạn</span>
             </div>
 
             <!-- Link TikTok hiện tại -->
@@ -452,8 +448,8 @@
           <div class="reg-summary-box">
             <div class="summary-line"><span>Số điện thoại (Dùng nộp video):</span> <strong id="successPhone" class="code-pill" style="font-size: 0.95rem; color: #0284C7;">09...</strong></div>
             <div class="summary-line"><span>Mã ghi danh:</span> <strong id="successId" style="color: var(--text-secondary); font-size: 0.84rem;">QL-TK-001</strong></div>
-            <div class="summary-line"><span>Địa điểm đào tạo:</span> <strong id="successVenue">TechnoPark</strong></div>
-            <div class="summary-line"><span>Phòng/Khối:</span> <strong id="successTeam">Khối KD 1</strong></div>
+            <div class="summary-line"><span>Khối kinh doanh:</span> <strong id="successDivision">Khối KD 1</strong></div>
+            <div class="summary-line"><span>Phòng kinh doanh:</span> <strong id="successDepartment">Phòng Dự án 1</strong></div>
           </div>
           <div class="success-actions">
             <button class="btn btn-primary" id="btnRegisterAnother">Đăng ký thêm người khác</button>
@@ -677,9 +673,13 @@
                 <label for="fbPhone">Số điện thoại <span class="opt-label">(Tùy chọn)</span></label>
                 <input type="tel" id="fbPhone" name="fbPhone" placeholder="Ví dụ: 0988123456">
               </div>
-              <div class="input-group full-col">
-                <label for="fbTeam">Phòng/Khối kinh doanh <span class="opt-label">(Tùy chọn)</span></label>
-                <input type="text" id="fbTeam" name="fbTeam" placeholder="Ví dụ: Khối KD 1, Team Smart City...">
+              <div class="input-group">
+                <label for="fbDivision">Khối kinh doanh <span class="opt-label">(Tùy chọn)</span></label>
+                <input type="text" id="fbDivision" name="fbDivision" placeholder="Ví dụ: Khối KD 1, Khối KD 2...">
+              </div>
+              <div class="input-group">
+                <label for="fbDepartment">Phòng kinh doanh <span class="opt-label">(Tùy chọn)</span></label>
+                <input type="text" id="fbDepartment" name="fbDepartment" placeholder="Ví dụ: Phòng Dự án 1, Team Smart City...">
               </div>
             </div>
           </div>

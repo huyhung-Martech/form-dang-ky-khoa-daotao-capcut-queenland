@@ -70,22 +70,22 @@
             <div class="counter-sub">Chỉ tiêu dự kiến: 80 nhân sự</div>
           </div>
 
-          <div class="counter-card" id="counterLeVanLuong">
+          <div class="counter-card" id="counterDivisions">
             <div class="card-top">
-              <span class="counter-label">35 Lê Văn Lương</span>
-              <span class="counter-badge b1">Đợt 1</span>
+              <span class="counter-label">Khối Tham Gia</span>
+              <span class="counter-badge b1">Đã Ghi Danh</span>
             </div>
-            <div class="counter-value" id="valLeVanLuongCount">0</div>
-            <div class="counter-sub" id="pctLeVanLuong">0% tổng số</div>
+            <div class="counter-value" id="valDivisionsCount">0</div>
+            <div class="counter-sub" id="pctDivisions">Khối kinh doanh</div>
           </div>
 
-          <div class="counter-card" id="counterTechnopark">
+          <div class="counter-card" id="counterDepartments">
             <div class="card-top">
-              <span class="counter-label">Tòa TechnoPark</span>
-              <span class="counter-badge b2">Đợt 2</span>
+              <span class="counter-label">Phòng / Team</span>
+              <span class="counter-badge b2">Đã Ghi Danh</span>
             </div>
-            <div class="counter-value" id="valTechnoparkCount">0</div>
-            <div class="counter-sub" id="pctTechnopark">0% tổng số</div>
+            <div class="counter-value" id="valDepartmentsCount">0</div>
+            <div class="counter-sub" id="pctDepartments">Phòng kinh doanh</div>
           </div>
 
           <div class="counter-card highlight" id="counterTopTeam">
@@ -103,8 +103,8 @@
           <!-- Team Breakdown Progress Bars -->
           <div class="dash-panel" id="teamBreakdownPanel">
             <div class="panel-header">
-              <h3 class="panel-title">Tỷ Lệ Đăng Ký Theo Phòng / Khối Kinh Doanh</h3>
-              <span class="panel-hint">Tự động gom nhóm theo phòng/khối học viên tự nhập</span>
+              <h3 class="panel-title">Tỷ Lệ Đăng Ký Theo Khối Kinh Doanh</h3>
+              <span class="panel-hint">Tự động gom nhóm theo khối kinh doanh học viên tự nhập</span>
             </div>
             <div class="team-progress-list" id="teamProgressList">
               <!-- Rendered by JS -->
@@ -167,11 +167,7 @@
               <div class="search-box">
                 <input type="text" id="searchKeyword" placeholder="Tìm theo tên, SĐT, hoặc khối...">
               </div>
-              <select id="filterVenue" class="filter-select">
-                <option value="ALL">Tất cả địa điểm</option>
-                <option value="35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)">35 Lê Văn Lương (Đợt 1)</option>
-                <option value="TechnoPark (Đợt 2: Tuần kế tiếp)">TechnoPark (Đợt 2)</option>
-              </select>
+
               <select id="filterSubmission" class="filter-select">
                 <option value="ALL">Tất cả tiến độ nộp</option>
                 <option value="SUBMITTED">✅ Đã nộp video</option>
@@ -187,8 +183,8 @@
                   <th style="width: 45px;">STT</th>
                   <th>Họ và Tên</th>
                   <th>Số Điện Thoại (Mã ID)</th>
-                  <th>Phòng/Khối Kinh Doanh</th>
-                  <th>Địa Điểm Đào Tạo</th>
+                  <th>Khối Kinh Doanh</th>
+                  <th>Phòng Kinh Doanh</th>
                   <th style="min-width: 140px;">Trạng Thái Nộp Video</th>
                   <th>Kỳ Vọng / Mục Tiêu</th>
                   <th>Thời Gian</th>

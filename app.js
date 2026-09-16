@@ -16,11 +16,11 @@ const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxlwD
 
 // Optional Sample Data (chỉ nạp khi người dùng bấm nút "Nạp Dữ Liệu Mẫu" trong Admin)
 const SAMPLE_REGISTRATIONS = [
-  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", submissionStatus: "Đã nộp B1", tiktokLink: "tiktok.com/@hoangbds", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 08:30" },
-  { id: "QL-TK-002", fullName: "Lê Thu Hà", phoneNumber: "0912456789", team: "Khối Kinh Doanh 1", venue: "35 Lê Văn Lương (Đợt 1: 17/09 & 18/09)", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Luyện giọng nói nội lực, hết run khi lên hình", timestamp: "2026-09-15 08:45" },
-  { id: "QL-TK-003", fullName: "Nguyễn Văn Đức", phoneNumber: "0977889900", team: "Khối Kinh Doanh 2", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Đã nộp B2", tiktokLink: "tiktok.com/@ducqueenland", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 09:00" },
-  { id: "QL-TK-004", fullName: "Phạm Thúy Vy", phoneNumber: "0904112233", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Làm chủ kỹ thuật quay điện thoại chuẩn chuyên nghiệp", timestamp: "2026-09-15 09:15" },
-  { id: "QL-TK-005", fullName: "Hoàng Tuấn Anh", phoneNumber: "0934556677", team: "Team Queen Land Ocean Park", venue: "TechnoPark (Đợt 2: Tuần kế tiếp)", submissionStatus: "Hoàn thành cả 2", tiktokLink: "tiktok.com/@tuananhvinhomes", goal: "Thành thạo dùng AI viết kịch bản BĐS 60s", timestamp: "2026-09-15 09:30" }
+  { id: "QL-TK-001", fullName: "Trần Minh Hoàng", phoneNumber: "0983124567", division: "Khối Kinh Doanh 1", department: "Phòng Dự Án 1", team: "Khối Kinh Doanh 1 - Phòng Dự Án 1", submissionStatus: "Đã nộp B1", tiktokLink: "tiktok.com/@hoangbds", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 08:30" },
+  { id: "QL-TK-002", fullName: "Lê Thu Hà", phoneNumber: "0912456789", division: "Khối Kinh Doanh 1", department: "Phòng Dự Án 2", team: "Khối Kinh Doanh 1 - Phòng Dự Án 2", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Luyện giọng nói nội lực, hết run khi lên hình", timestamp: "2026-09-15 08:45" },
+  { id: "QL-TK-003", fullName: "Nguyễn Văn Đức", phoneNumber: "0977889900", division: "Khối Kinh Doanh 2", department: "Team Smart City", team: "Khối Kinh Doanh 2 - Team Smart City", submissionStatus: "Đã nộp B2", tiktokLink: "tiktok.com/@ducqueenland", goal: "Tự tay dựng được video CapCut triệu view", timestamp: "2026-09-15 09:00" },
+  { id: "QL-TK-004", fullName: "Phạm Thúy Vy", phoneNumber: "0904112233", division: "Khối Kinh Doanh 2", department: "Team Ocean Park", team: "Khối Kinh Doanh 2 - Team Ocean Park", submissionStatus: "Chưa nộp", tiktokLink: "", goal: "Làm chủ kỹ thuật quay điện thoại chuẩn chuyên nghiệp", timestamp: "2026-09-15 09:15" },
+  { id: "QL-TK-005", fullName: "Hoàng Tuấn Anh", phoneNumber: "0934556677", division: "Khối Kinh Doanh 3", department: "Phòng Biệt Thự VIP", team: "Khối Kinh Doanh 3 - Phòng Biệt Thự VIP", submissionStatus: "Hoàn thành cả 2", tiktokLink: "tiktok.com/@tuananhvinhomes", goal: "Thành thạo dùng AI viết kịch bản BĐS 60s", timestamp: "2026-09-15 09:30" }
 ];
 
 // App State (Mặc định bắt đầu từ danh sách trống 0 học viên)
@@ -143,8 +143,8 @@ function handleFormSubmit(e) {
   const form = document.getElementById('registrationForm');
   const fullName = document.getElementById('fullName').value.trim();
   const phoneNumber = document.getElementById('phoneNumber').value.trim();
-  const team = document.getElementById('teamInput').value.trim();
-  const venue = document.getElementById('venueSelect').value;
+  const division = document.getElementById('divisionInput').value.trim();
+  const department = document.getElementById('departmentInput').value.trim();
   const tiktokLink = document.getElementById('tiktokLink').value.trim();
   const goal = document.getElementById('learningGoal').value;
 
@@ -174,26 +174,26 @@ function handleFormSubmit(e) {
     errPhoneNumber.style.display = 'none';
   }
 
-  // Validate Team Input (Tự do nhập)
-  const errTeamInput = document.getElementById('errTeamInput');
-  if (!team) {
-    document.getElementById('teamInput').parentElement.classList.add('has-error');
-    errTeamInput.style.display = 'block';
+  // Validate Division Input (Khối KD)
+  const errDivisionInput = document.getElementById('errDivisionInput');
+  if (!division) {
+    document.getElementById('divisionInput').parentElement.classList.add('has-error');
+    errDivisionInput.style.display = 'block';
     isValid = false;
   } else {
-    document.getElementById('teamInput').parentElement.classList.remove('has-error');
-    errTeamInput.style.display = 'none';
+    document.getElementById('divisionInput').parentElement.classList.remove('has-error');
+    errDivisionInput.style.display = 'none';
   }
 
-  // Validate Venue
-  const errVenueSelect = document.getElementById('errVenueSelect');
-  if (!venue) {
-    document.getElementById('venueSelect').parentElement.classList.add('has-error');
-    errVenueSelect.style.display = 'block';
+  // Validate Department Input (Phòng KD)
+  const errDepartmentInput = document.getElementById('errDepartmentInput');
+  if (!department) {
+    document.getElementById('departmentInput').parentElement.classList.add('has-error');
+    errDepartmentInput.style.display = 'block';
     isValid = false;
   } else {
-    document.getElementById('venueSelect').parentElement.classList.remove('has-error');
-    errVenueSelect.style.display = 'none';
+    document.getElementById('departmentInput').parentElement.classList.remove('has-error');
+    errDepartmentInput.style.display = 'none';
   }
 
   if (!isValid) {
@@ -205,13 +205,15 @@ function handleFormSubmit(e) {
   const regId = `QL-TK-${String(newIndex).padStart(3, '0')}`;
   const now = new Date();
   const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  const teamCombined = `${division} - ${department}`;
 
   const newReg = {
     id: regId,
     fullName,
     phoneNumber: phoneClean,
-    team,
-    venue,
+    division,
+    department,
+    team: teamCombined,
     tiktokLink,
     goal,
     submissionStatus: 'Chưa nộp',
@@ -234,10 +236,10 @@ function handleFormSubmit(e) {
   if (elPhone) elPhone.textContent = phoneClean;
   const elId = document.getElementById('successId');
   if (elId) elId.textContent = regId;
-  const elVenue = document.getElementById('successVenue');
-  if (elVenue) elVenue.textContent = venue;
-  const elTeam = document.getElementById('successTeam');
-  if (elTeam) elTeam.textContent = team;
+  const elDiv = document.getElementById('successDivision');
+  if (elDiv) elDiv.textContent = division;
+  const elDept = document.getElementById('successDepartment');
+  if (elDept) elDept.textContent = department;
   if (successCard) successCard.style.display = 'block';
 
   // Smooth scroll to success card
@@ -282,29 +284,25 @@ function renderCounters() {
   const total = registrations.length;
   totalEl.textContent = total;
 
-  // Technopark count
-  const tpCount = registrations.filter(r => r.venue && r.venue.includes('TechnoPark')).length;
-  const valTp = document.getElementById('valTechnoparkCount');
-  if (valTp) valTp.textContent = tpCount;
-  
-  const pctTp = document.getElementById('pctTechnopark');
-  if (pctTp) {
-    const tpPct = total > 0 ? Math.round((tpCount / total) * 100) : 0;
-    pctTp.textContent = `${tpPct}% tổng số`;
-  }
+  // Distinct Divisions count
+  const divisions = new Set();
+  registrations.forEach(r => {
+    const d = (r.division || (r.team ? r.team.split('-')[0].trim() : '')).trim();
+    if (d) divisions.add(d);
+  });
+  const valDiv = document.getElementById('valDivisionsCount');
+  if (valDiv) valDiv.textContent = divisions.size;
 
-  // 35 Lê Văn Lương count
-  const lvlCount = registrations.filter(r => r.venue && r.venue.includes('Lê Văn Lương')).length;
-  const valLvl = document.getElementById('valLeVanLuongCount');
-  if (valLvl) valLvl.textContent = lvlCount;
-  
-  const pctLvl = document.getElementById('pctLeVanLuong');
-  if (pctLvl) {
-    const lvlPct = total > 0 ? Math.round((lvlCount / total) * 100) : 0;
-    pctLvl.textContent = `${lvlPct}% tổng số`;
-  }
+  // Distinct Departments count
+  const departments = new Set();
+  registrations.forEach(r => {
+    const dept = (r.department || (r.team && r.team.includes('-') ? r.team.split('-')[1].trim() : r.team || '')).trim();
+    if (dept) departments.add(dept);
+  });
+  const valDept = document.getElementById('valDepartmentsCount');
+  if (valDept) valDept.textContent = departments.size;
 
-  // Top Team
+  // Top Division / Team
   const teamCounts = getTeamStats();
   const valTopName = document.getElementById('valTopTeamName');
   const valTopCount = document.getElementById('valTopTeamCount');
@@ -382,27 +380,27 @@ function renderTable() {
 
   const searchInput = document.getElementById('searchKeyword');
   const keyword = searchInput ? searchInput.value.trim().toLowerCase() : '';
-  
-  const filterVenueEl = document.getElementById('filterVenue');
-  const filterVenue = filterVenueEl ? filterVenueEl.value : 'ALL';
 
   const filterSubmissionEl = document.getElementById('filterSubmission');
   const filterSubmission = filterSubmissionEl ? filterSubmissionEl.value : 'ALL';
 
   // Filter
   const filtered = registrations.filter(r => {
+    const divStr = (r.division || '').toLowerCase();
+    const deptStr = (r.department || '').toLowerCase();
     const matchKeyword = r.fullName.toLowerCase().includes(keyword) || 
                          r.phoneNumber.includes(keyword) || 
                          r.id.toLowerCase().includes(keyword) ||
-                         r.team.toLowerCase().includes(keyword);
-    const matchVenue = (filterVenue === 'ALL') || (r.venue === filterVenue);
+                         r.team.toLowerCase().includes(keyword) ||
+                         divStr.includes(keyword) ||
+                         deptStr.includes(keyword);
 
     const isSubmitted = r.submissionStatus && r.submissionStatus !== 'Chưa nộp';
     const matchSubmission = (filterSubmission === 'ALL') ||
                             (filterSubmission === 'SUBMITTED' && isSubmitted) ||
                             (filterSubmission === 'PENDING' && !isSubmitted);
 
-    return matchKeyword && matchVenue && matchSubmission;
+    return matchKeyword && matchSubmission;
   });
 
   if (countBadge) countBadge.textContent = `${filtered.length} bản ghi`;
@@ -417,15 +415,14 @@ function renderTable() {
   tbody.innerHTML = '';
 
   filtered.forEach((r, idx) => {
-    const isTP = r.venue && r.venue.includes('TechnoPark');
-    const venueClass = isTP ? 'venue-tag tp' : 'venue-tag lvl';
-    const venueShort = isTP ? 'TechnoPark' : '35 Lê Văn Lương';
-
     const curStatus = r.submissionStatus || 'Chưa nộp';
     let statusStyle = 'background: #FEF2F2; color: #991B1B; border-color: #FECACA;';
     if (curStatus.includes('Đã nộp') || curStatus.includes('Xong') || curStatus.includes('Hoàn thành')) {
       statusStyle = 'background: #F0FDF4; color: #166534; border-color: #BBF7D0;';
     }
+
+    const divisionDisplay = r.division || (r.team ? r.team.split('-')[0].trim() : 'Khối KD');
+    const departmentDisplay = r.department || (r.team && r.team.includes('-') ? r.team.split('-')[1].trim() : (r.team || 'Phòng KD'));
 
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -439,8 +436,8 @@ function renderTable() {
           ${r.phoneNumber}
         </a>
       </td>
-      <td><span style="font-weight: 700; color: var(--text-secondary);">${escapeHtml(r.team)}</span></td>
-      <td><span class="${venueClass}">${venueShort}</span></td>
+      <td><span style="font-weight: 700; color: #0369A1;">${escapeHtml(divisionDisplay)}</span></td>
+      <td><span style="font-weight: 600; color: var(--text-secondary);">${escapeHtml(departmentDisplay)}</span></td>
       <td>
         <select onchange="updateSubmissionStatus('${r.id}', this.value)" style="font-size: 0.74rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; border: 1px solid; cursor: pointer; ${statusStyle}">
           <option value="Chưa nộp" ${curStatus === 'Chưa nộp' ? 'selected' : ''}>⏳ Chưa nộp</option>
@@ -475,16 +472,16 @@ function exportToExcel() {
     return;
   }
 
-  const headers = ["STT", "Số Điện Thoại (Mã Định Danh)", "Mã Ghi Danh", "Họ và Tên", "Phòng/Khối Kinh Doanh", "Cơ Sở Học", "Trạng Thái Nộp Video", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
+  const headers = ["STT", "Số Điện Thoại (Mã Định Danh)", "Mã Ghi Danh", "Họ và Tên", "Khối Kinh Doanh", "Phòng Kinh Doanh", "Trạng Thái Nộp Video", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
   
   const rows = registrations.map((r, i) => [
     i + 1,
-    `="${r.phoneNumber}"`, // Force Excel to treat phone as text
+    `"${r.phoneNumber}"`,
     `"${r.id}"`,
     `"${r.fullName.replace(/"/g, '""')}"`,
-    `"${r.team.replace(/"/g, '""')}"`,
-    `"${r.venue.replace(/"/g, '""')}"`,
-    `"${r.submissionStatus || 'Chưa nộp'}"`,
+    `"${(r.division || (r.team ? r.team.split('-')[0].trim() : '')).replace(/"/g, '""')}"`,
+    `"${(r.department || (r.team && r.team.includes('-') ? r.team.split('-')[1].trim() : r.team || '')).replace(/"/g, '""')}"`,
+    `"${(r.submissionStatus || 'Chưa nộp').replace(/"/g, '""')}"`,
     `"${(r.tiktokLink || '').replace(/"/g, '""')}"`,
     `"${(r.goal || '').replace(/"/g, '""')}"`,
     `"${r.timestamp}"`
@@ -661,7 +658,9 @@ function handleFeedbackSubmit(e) {
   // Gather Identity (optional)
   const fullName = form.querySelector('input[name="fbFullName"]')?.value.trim() || 'Ẩn danh';
   const phoneNumber = form.querySelector('input[name="fbPhone"]')?.value.trim() || '';
-  const team = form.querySelector('input[name="fbTeam"]')?.value.trim() || '';
+  const division = form.querySelector('input[name="fbDivision"]')?.value.trim() || '';
+  const department = form.querySelector('input[name="fbDepartment"]')?.value.trim() || '';
+  const team = (division && department) ? `${division} - ${department}` : (division || department || '');
 
   const now = new Date();
   const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
@@ -677,6 +676,8 @@ function handleFeedbackSubmit(e) {
     anonymousQuestion,
     fullName,
     phoneNumber,
+    division,
+    department,
     team,
     timestamp
   };

@@ -12,8 +12,8 @@ Hệ thống đã được nâng cấp hỗ trợ **đồng thời cả 2 luồn
    * **Cột A:** Mã Ghi Danh
    * **Cột B:** Họ và Tên
    * **Cột C:** Số Điện Thoại *(Khóa định danh chính)*
-   * **Cột D:** Phòng/Khối Kinh Doanh
-   * **Cột E:** Địa Điểm Đào Tạo
+   * **Cột D:** Khối Kinh Doanh
+   * **Cột E:** Phòng Kinh Doanh
    * **Cột F:** Link TikTok
    * **Cột G:** Kỳ Vọng / Mục Tiêu
    * **Cột H:** Thời Gian Đăng Ký
@@ -38,7 +38,7 @@ function doPost(e) {
     // ==========================================
     if (data.action === "feedback" || data.type === "feedback") {
       var fbSheet = ss.getSheetByName("PhanHoi");
-      // Tự động tạo tab PhanHoi nếu chưa có
+      // Tự động tạo tab PhanHoi và dòng tiêu đề nếu chưa có
       if (!fbSheet) {
         fbSheet = ss.insertSheet("PhanHoi");
         fbSheet.appendRow([
@@ -51,10 +51,11 @@ function doPost(e) {
           "Hộp Thư Kín (Thắc Mắc Chưa Rõ)",
           "Họ và Tên",
           "Số Điện Thoại",
-          "Phòng/Khối Kinh Doanh"
+          "Khối Kinh Doanh",
+          "Phòng Kinh Doanh"
         ]);
         fbSheet.setFrozenRows(1);
-        fbSheet.getRange("A1:J1").setBackground("#F1F5F9").setFontWeight("bold");
+        fbSheet.getRange("A1:K1").setBackground("#F1F5F9").setFontWeight("bold");
       }
       
       fbSheet.appendRow([
@@ -67,7 +68,8 @@ function doPost(e) {
         data.anonymousQuestion || '',
         data.fullName || 'Ẩn danh',
         data.phoneNumber ? "'" + data.phoneNumber : '',
-        data.team || ''
+        data.division || (data.team ? data.team.split('-')[0].trim() : ''),
+        data.department || (data.team && data.team.includes('-') ? data.team.split('-')[1].trim() : '')
       ]);
       
       return ContentService
@@ -91,8 +93,8 @@ function doPost(e) {
       data.id || '',
       data.fullName || '',
       "'" + (data.phoneNumber || ''), // Thêm dấu nháy để giữ số 0 đầu
-      data.team || '',
-      data.venue || '',
+      data.division || (data.team ? data.team.split('-')[0].trim() : ''),
+      data.department || (data.team && data.team.includes('-') ? data.team.split('-')[1].trim() : ''),
       data.tiktokLink || '',
       data.goal || '',
       data.timestamp || new Date().toLocaleString("vi-VN"),
