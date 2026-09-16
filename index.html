@@ -25,6 +25,7 @@
         <a href="#schedule" class="nav-link" id="navScheduleLink">Lịch Học & Địa Điểm</a>
         <a href="#submission" class="nav-link" id="navSubmissionLink">Nộp Video</a>
         <a href="#preparation" class="nav-link" id="navPrepLink">Chuẩn Bị</a>
+        <a href="#feedback" class="nav-link" id="navFeedbackLink">Phản Hồi</a>
         <a href="#register" class="nav-link cta-btn" id="navRegisterLink">Đăng Ký Ngay</a>
         <a href="admin.html" class="admin-lock-btn" id="navAdminLink" title="Chỉ dành cho Ban Quản Trị & P. Digital Marketing">
           <span>🔒 Quản Trị</span>
@@ -32,6 +33,26 @@
       </nav>
     </div>
   </header>
+
+  <!-- Top Segmented Tab Switcher (Floating / Sticky Pill) -->
+  <div class="tab-control-wrapper" id="tabControlWrapper">
+    <div class="container">
+      <div class="segmented-tabs" role="tablist">
+        <button type="button" class="seg-tab active" id="tabBtnCourse" role="tab" aria-selected="true" data-tab="course">
+          <span class="seg-icon">🎯</span>
+          <span class="seg-text">Lộ Trình & Đăng Ký</span>
+        </button>
+        <button type="button" class="seg-tab" id="tabBtnFeedback" role="tab" aria-selected="false" data-tab="feedback">
+          <span class="seg-icon">📝</span>
+          <span class="seg-text">Phản Hồi Sau Buổi Học</span>
+          <span class="seg-badge">Khảo Sát</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Course View Container (Tab 1) -->
+  <div id="courseView" class="tab-view active">
 
   <!-- Hero Section -->
   <section class="hero-section" id="heroSection">
@@ -442,6 +463,253 @@
       </div>
     </div>
   </section>
+  </div> <!-- End #courseView -->
+
+  <!-- Feedback Section View (Tab 2) -->
+  <div id="feedbackView" class="tab-view" style="display: none;">
+    <section class="section feedback-section" id="feedbackSection">
+      <div class="container feedback-container">
+        <div class="section-header">
+          <div class="badge-row">
+            <span class="pill-badge highlight">📝 KHẢO SÁT & GÓP Ý THỰC HÀNH</span>
+            <span class="pill-badge">Bảo mật • Tùy chọn ẩn danh 100%</span>
+          </div>
+          <h1 class="section-title">PHIẾU PHẢN HỒI SAU BUỔI HỌC</h1>
+          <p class="section-subtitle">
+            Khóa: Xây Dựng Kênh TikTok BĐS Từ Con Số 0 Đến Ra Deal Thực Tế.<br>
+            Ý kiến của anh/chị là cơ sở để Ban Giảng Viên Phòng Digital Marketing may đo giáo án và hỗ trợ 1:1 sát sườn nhất cho các buổi tiếp theo.
+          </p>
+          <div class="feedback-meta-bar">
+            <span class="fb-meta-pill">⏱️ Mất khoảng 1 phút</span>
+            <span class="fb-meta-pill">🔒 Câu nào chưa tiện trả lời có thể để trống</span>
+            <span class="fb-meta-pill">🎯 Ban Giảng Viên lắng nghe 100%</span>
+          </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <form id="feedbackForm" class="feedback-form" novalidate>
+          
+          <!-- PHẦN 1: NẮM BÀI & ĐIỂM NGHẼN -->
+          <div class="fb-group-card">
+            <div class="fb-group-header">
+              <span class="fb-group-num">PHẦN 1</span>
+              <h3 class="fb-group-title">Mức Độ Nắm Bài & Điểm Nghẽn Thực Hành</h3>
+              <p class="fb-group-desc">Giúp giảng viên nắm bắt tiến độ thực tế của lớp để điều chỉnh nhịp độ</p>
+            </div>
+
+            <!-- Q1: Tự tin scale 1-5 -->
+            <div class="fb-question">
+              <label class="fb-label">1. Sau buổi học hôm nay, anh/chị tự tin làm video TikTok ở mức nào? <span class="required">*</span></label>
+              <div class="scale-rating">
+                <label class="scale-chip">
+                  <input type="radio" name="confidenceScale" value="1">
+                  <span class="scale-box">1</span>
+                </label>
+                <label class="scale-chip">
+                  <input type="radio" name="confidenceScale" value="2">
+                  <span class="scale-box">2</span>
+                </label>
+                <label class="scale-chip">
+                  <input type="radio" name="confidenceScale" value="3" checked>
+                  <span class="scale-box">3</span>
+                </label>
+                <label class="scale-chip">
+                  <input type="radio" name="confidenceScale" value="4">
+                  <span class="scale-box">4</span>
+                </label>
+                <label class="scale-chip">
+                  <input type="radio" name="confidenceScale" value="5">
+                  <span class="scale-box">5</span>
+                </label>
+              </div>
+              <div class="scale-labels">
+                <span>1 = Còn bỡ ngỡ, chưa dám làm</span>
+                <span>5 = Tự tin làm ngay được!</span>
+              </div>
+            </div>
+
+            <!-- Q2: Bước khó khăn nhất (Multi-choice) -->
+            <div class="fb-question">
+              <label class="fb-label">2. Bước nào trong quy trình hôm nay khiến anh/chị thấy "ngợp" hoặc khó làm nhất? <span class="opt-hint">(Chọn 1 hoặc nhiều ý)</span></label>
+              <div class="chips-grid">
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Viết kịch bản bằng AI">
+                  <span class="chip-content">🤖 Viết kịch bản AI (Văn vẻ, chưa ra chất sale)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Tâm lý lên hình & Giọng nói">
+                  <span class="chip-content">🎙️ Lên hình & Giọng nói (Bị run, mắt đảo, ngại ống kính)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Cắt gọt Jump-cut CapCut">
+                  <span class="chip-content">✂️ Cắt gọt Jump-cut CapCut (Rối timeline, thao tác chậm)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Chèn ảnh / Sa bàn B-roll">
+                  <span class="chip-content">🗺️ Chèn B-roll dự án (Chưa có kho video, phối cảnh nét)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Nhạc nền & Phụ đề tự động">
+                  <span class="chip-content">🎵 Phụ đề & Nhạc nền (Chưa biết canh chỉnh âm lượng)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="hardestStep" value="Không bước nào khó">
+                  <span class="chip-content">✅ Không bước nào khó, tôi làm được hết!</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q3: Sản phẩm thực hành hiện tại -->
+            <div class="fb-question">
+              <label class="fb-label">3. Video thực hành hôm nay của anh/chị đang dừng ở mức độ nào?</label>
+              <div class="chips-grid vertical">
+                <label class="fb-chip">
+                  <input type="radio" name="videoProgress" value="Đã quay xong A-roll, sẵn sàng dựng" checked>
+                  <span class="chip-content">🎬 Đã quay xong A-roll nói mượt mà, sẵn sàng dựng</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="videoProgress" value="Đã quay thử nhưng còn vấp, muốn quay lại">
+                  <span class="chip-content">🔄 Đã quay nhưng còn vấp nhiều, muốn bấm máy lại đúp khác</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="videoProgress" value="Chưa kịp quay do chưa chốt kịch bản">
+                  <span class="chip-content">⏳ Chưa kịp quay do chưa chốt được kịch bản ưng ý</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="videoProgress" value="Đã hoàn thiện cả video và sẵn sàng xuất bản">
+                  <span class="chip-content">🚀 Đã hoàn thiện xong cả video, sẵn sàng đăng kênh</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- PHẦN 2: YÊU CẦU CHO BUỔI HỌC TIẾP THEO -->
+          <div class="fb-group-card">
+            <div class="fb-group-header">
+              <span class="fb-group-num">PHẦN 2</span>
+              <h3 class="fb-group-title">Yêu Cầu & Kỳ Vọng Cho Buổi Học Tiếp Theo</h3>
+              <p class="fb-group-desc">Ban Giảng Viên sẽ chuẩn bị nội dung và tài nguyên theo số đông bình chọn</p>
+            </div>
+
+            <!-- Q4: Ưu tiên việc gì (Multi-choice) -->
+            <div class="fb-question">
+              <label class="fb-label">4. Buổi học tiếp theo, anh/chị muốn Ban Giảng Viên ưu tiên thời gian cho việc gì nhất? <span class="opt-hint">(Chọn tối đa 2 ý)</span></label>
+              <div class="chips-grid">
+                <label class="fb-chip">
+                  <input type="checkbox" name="nextPriority" value="Cầm tay chỉ việc 1:1 tận bàn">
+                  <span class="chip-content">🤝 Cầm tay chỉ việc 1:1 tận bàn để sửa video đang dựng</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="nextPriority" value="Mổ xẻ & Sửa kịch bản trên màn chiếu">
+                  <span class="chip-content">📺 Mổ xẻ & Sửa 3-5 kịch bản mẫu trực tiếp trên màn chiếu</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="nextPriority" value="Cung cấp sẵn kho tư liệu video BĐS">
+                  <span class="chip-content">📁 Tặng kho tài nguyên video flycam, render dự án sắc nét</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="nextPriority" value="Bí quyết giật tít & SEO TikTok">
+                  <span class="chip-content">📈 Bí quyết đặt tiêu đề giật tít & SEO TikTok kéo khách VIP</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="checkbox" name="nextPriority" value="Cách kéo người xem inbox Zalo/Hotline">
+                  <span class="chip-content">💬 Kịch bản kêu gọi CTA để khách xem video inbox hẹn đi xem nhà</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q5: Dự án BĐS làm bài mẫu -->
+            <div class="fb-question">
+              <label class="fb-label">5. Dự án BĐS anh/chị muốn lấy làm case study thực hành ở buổi sau:</label>
+              <div class="chips-grid">
+                <label class="fb-chip">
+                  <input type="radio" name="sampleProject" value="Vinhomes Ocean Park (1, 2, 3)" checked>
+                  <span class="chip-content">🌊 Vinhomes Ocean Park (1, 2, 3)</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="sampleProject" value="Vinhomes Hạ Long Xanh">
+                  <span class="chip-content">🌲 Vinhomes Hạ Long Xanh</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="sampleProject" value="Grand World / Nghỉ Dưỡng">
+                  <span class="chip-content">🎡 Grand World / Nghỉ Dưỡng</span>
+                </label>
+                <label class="fb-chip">
+                  <input type="radio" name="sampleProject" value="Căn hộ cao cấp chuyển nhượng">
+                  <span class="chip-content">🏢 Căn hộ cao cấp chuyển nhượng</span>
+                </label>
+              </div>
+              <div class="input-inline-wrap" style="margin-top: 10px;">
+                <input type="text" id="customProject" name="customProject" class="fb-text-input" placeholder="Hoặc nhập dự án khác bạn đang bán...">
+              </div>
+            </div>
+          </div>
+
+          <!-- PHẦN 3: HỘP THƯ KÍN ẨN DANH -->
+          <div class="fb-group-card">
+            <div class="fb-group-header">
+              <span class="fb-group-num">PHẦN 3</span>
+              <h3 class="fb-group-title">Hộp Thư Kín · Giải Tỏa Thắc Mắc</h3>
+              <p class="fb-group-desc">Câu hỏi hoặc băn khoăn anh/chị chưa tiện giơ tay hỏi trước hội trường đông người</p>
+            </div>
+
+            <div class="fb-question">
+              <label class="fb-label">6. Điều gì khiến anh/chị băn khoăn nhất hoặc chưa rõ trong bài giảng?</label>
+              <p class="help-text">💡 Ban Giảng Viên sẽ tổng hợp và giải đáp chung vào đầu buổi học tiếp theo mà không công khai tên của anh/chị.</p>
+              <textarea id="anonymousQuestion" name="anonymousQuestion" class="fb-textarea" placeholder="Ví dụ: Em rất ngại lên hình sợ người quen thấy, dùng CapCut bản miễn phí có đủ không, đăng video giờ nào dễ lên xu hướng..."></textarea>
+            </div>
+          </div>
+
+          <!-- PHẦN 4: THÔNG TIN NGƯỜI GỬI (TÙY CHỌN) -->
+          <div class="fb-group-card">
+            <div class="fb-group-header">
+              <span class="fb-group-num">PHẦN 4</span>
+              <h3 class="fb-group-title">Thông Tin Người Gửi (Không Bắt Buộc)</h3>
+              <p class="fb-group-desc">Điền thông tin nếu muốn được Ban Giảng Viên P. Digital Marketing hỗ trợ 1:1, hoặc để trống để gửi ẩn danh 100%</p>
+            </div>
+
+            <div class="fb-identity-grid">
+              <div class="input-group">
+                <label for="fbFullName">Họ và tên <span class="opt-label">(Tùy chọn)</span></label>
+                <input type="text" id="fbFullName" name="fbFullName" placeholder="Để trống nếu gửi ẩn danh">
+              </div>
+              <div class="input-group">
+                <label for="fbPhone">Số điện thoại <span class="opt-label">(Tùy chọn)</span></label>
+                <input type="tel" id="fbPhone" name="fbPhone" placeholder="Ví dụ: 0988123456">
+              </div>
+              <div class="input-group full-col">
+                <label for="fbTeam">Phòng/Khối kinh doanh <span class="opt-label">(Tùy chọn)</span></label>
+                <input type="text" id="fbTeam" name="fbTeam" placeholder="Ví dụ: Khối KD 1, Team Smart City...">
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="fb-submit-bar">
+            <button type="submit" class="btn btn-primary btn-submit-fb" id="btnSubmitFeedback">
+              <span>GỬI PHẢN HỒI CHO BAN GIẢNG VIÊN 🚀</span>
+            </button>
+            <p class="fb-submit-note">🔒 Dữ liệu được gửi trực tiếp về Ban Đào Tạo P. Digital Marketing Queen Land</p>
+          </div>
+        </form>
+
+        <!-- Thành công Card -->
+        <div class="feedback-success-card" id="fbSuccessCard" style="display: none;">
+          <div class="success-icon">💐</div>
+          <h2 class="success-title">CẢM ƠN ANH/CHỊ ĐÃ GÓP Ý!</h2>
+          <p class="success-desc">
+            Ban Giảng Viên Phòng Digital Marketing đã tiếp nhận phản hồi. Các vướng mắc và yêu cầu của anh/chị sẽ được giải đáp và đưa vào thực chiến ngay ở buổi tiếp theo.
+          </p>
+          <div class="success-actions" style="margin-top: 20px;">
+            <button type="button" class="btn btn-primary" id="btnBackToCourse">
+              <span>← Quay lại xem lộ trình đào tạo & nộp video</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div> <!-- End #feedbackView -->
 
   <!-- Footer -->
   <footer class="site-footer" id="siteFooter">

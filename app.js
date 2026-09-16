@@ -117,6 +117,23 @@ function setupEventListeners() {
       }
     });
   }
+
+  // --- Main Tab Switcher Controller ---
+  setupTabController();
+
+  // --- Feedback Form Handler ---
+  const fbForm = document.getElementById('feedbackForm');
+  if (fbForm) {
+    fbForm.addEventListener('submit', handleFeedbackSubmit);
+  }
+
+  const btnBackToCourse = document.getElementById('btnBackToCourse');
+  if (btnBackToCourse) {
+    btnBackToCourse.addEventListener('click', () => {
+      switchMainTab('course', true);
+      history.replaceState(null, '', ' ');
+    });
+  }
 }
 
 // Form Submission Handler
@@ -502,3 +519,206 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
+// ==========================================================================
+// MAIN TAB SWITCHER & FEEDBACK HANDLER
+// ==========================================================================
+
+function switchMainTab(targetTab, shouldScroll = true) {
+  const courseView = document.getElementById('courseView');
+  const feedbackView = document.getElementById('feedbackView');
+  const btnCourse = document.getElementById('tabBtnCourse');
+  const btnFeedback = document.getElementById('tabBtnFeedback');
+  const navFeedbackLink = document.getElementById('navFeedbackLink');
+
+  if (!courseView || !feedbackView) return;
+
+  if (targetTab === 'feedback') {
+    courseView.style.display = 'none';
+    feedbackView.style.display = 'block';
+
+    if (btnCourse) {
+      btnCourse.classList.remove('active');
+      btnCourse.setAttribute('aria-selected', 'false');
+    }
+    if (btnFeedback) {
+      btnFeedback.classList.add('active');
+      btnFeedback.setAttribute('aria-selected', 'true');
+    }
+    if (navFeedbackLink) {
+      navFeedbackLink.classList.add('active');
+    }
+
+    if (shouldScroll) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  } else {
+    feedbackView.style.display = 'none';
+    courseView.style.display = 'block';
+
+    if (btnFeedback) {
+      btnFeedback.classList.remove('active');
+      btnFeedback.setAttribute('aria-selected', 'false');
+    }
+    if (btnCourse) {
+      btnCourse.classList.add('active');
+      btnCourse.setAttribute('aria-selected', 'true');
+    }
+    if (navFeedbackLink) {
+      navFeedbackLink.classList.remove('active');
+    }
+
+    if (shouldScroll) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+}
+
+function setupTabController() {
+  const tabBtnCourse = document.getElementById('tabBtnCourse');
+  const tabBtnFeedback = document.getElementById('tabBtnFeedback');
+  const navFeedbackLink = document.getElementById('navFeedbackLink');
+
+  if (tabBtnCourse) {
+    tabBtnCourse.addEventListener('click', () => {
+      switchMainTab('course', true);
+      history.replaceState(null, '', ' ');
+    });
+  }
+
+  if (tabBtnFeedback) {
+    tabBtnFeedback.addEventListener('click', () => {
+      switchMainTab('feedback', true);
+      history.replaceState(null, '', '#feedback');
+    });
+  }
+
+  if (navFeedbackLink) {
+    navFeedbackLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchMainTab('feedback', true);
+      history.replaceState(null, '', '#feedback');
+    });
+  }
+
+  // When clicking any course navbar link while on feedback tab, switch back to course tab!
+  const courseNavIds = ['navAgendaLink', 'navScheduleLink', 'navSubmissionLink', 'navPrepLink', 'navRegisterLink', 'heroAgendaBtn', 'heroRegisterBtn'];
+  courseNavIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', () => {
+        switchMainTab('course', false);
+      });
+    }
+  });
+
+  // Handle URL hash on load and back/forward navigation
+  function checkHash() {
+    if (window.location.hash === '#feedback') {
+      switchMainTab('feedback', false);
+    } else {
+      switchMainTab('course', false);
+    }
+  }
+
+  window.addEventListener('hashchange', checkHash);
+  checkHash();
+}
+
+// Handle Feedback Form Submission
+function handleFeedbackSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = document.getElementById('btnSubmitFeedback');
+
+  // Gather Scale (1-5)
+  const scaleEl = form.querySelector('input[name="confidenceScale"]:checked');
+  const confidenceScale = scaleEl ? scaleEl.value : '3';
+
+  // Gather Hardest Steps (checkboxes)
+  const hardestChecks = form.querySelectorAll('input[name="hardestStep"]:checked');
+  const hardestSteps = Array.from(hardestChecks).map(c => c.value).join(', ') || 'Không chọn';
+
+  // Gather Video Progress (radio)
+  const progressEl = form.querySelector('input[name="videoProgress"]:checked');
+  const videoProgress = progressEl ? progressEl.value : 'Chưa chọn';
+
+  // Gather Next Priorities (checkboxes)
+  const priorityChecks = form.querySelectorAll('input[name="nextPriority"]:checked');
+  const nextPriorities = Array.from(priorityChecks).map(c => c.value).join(', ') || 'Không chọn';
+
+  // Gather Sample Project
+  const projectEl = form.querySelector('input[name="sampleProject"]:checked');
+  let sampleProject = projectEl ? projectEl.value : '';
+  const customProj = form.querySelector('input[name="customProject"]')?.value.trim();
+  if (customProj) {
+    sampleProject = sampleProject ? `${sampleProject} (${customProj})` : customProj;
+  }
+
+  // Gather Anonymous Question
+  const anonymousQuestion = form.querySelector('textarea[name="anonymousQuestion"]')?.value.trim() || 'Không có';
+
+  // Gather Identity (optional)
+  const fullName = form.querySelector('input[name="fbFullName"]')?.value.trim() || 'Ẩn danh';
+  const phoneNumber = form.querySelector('input[name="fbPhone"]')?.value.trim() || '';
+  const team = form.querySelector('input[name="fbTeam"]')?.value.trim() || '';
+
+  const now = new Date();
+  const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+  const feedbackData = {
+    action: 'feedback',
+    type: 'feedback',
+    confidenceScale,
+    hardestSteps,
+    videoProgress,
+    nextPriorities,
+    sampleProject,
+    anonymousQuestion,
+    fullName,
+    phoneNumber,
+    team,
+    timestamp
+  };
+
+  // 1. Save locally for Admin review
+  try {
+    const saved = JSON.parse(localStorage.getItem('queenland_tiktok_feedback_list') || '[]');
+    saved.unshift(feedbackData);
+    localStorage.setItem('queenland_tiktok_feedback_list', JSON.stringify(saved));
+  } catch (err) {
+    console.log('Error saving feedback locally:', err);
+  }
+
+  // 2. Sync to Google Sheets Webhook
+  syncFeedbackToGoogleSheets(feedbackData);
+
+  // 3. UI Done State
+  form.style.display = 'none';
+  const successCard = document.getElementById('fbSuccessCard');
+  if (successCard) {
+    successCard.style.display = 'block';
+    successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Sync Feedback to Google Sheets Webhook
+function syncFeedbackToGoogleSheets(data) {
+  const webhookUrl = (typeof GOOGLE_SHEETS_WEBHOOK_URL !== 'undefined' && GOOGLE_SHEETS_WEBHOOK_URL) 
+    || localStorage.getItem('queenland_google_sheets_webhook');
+  if (!webhookUrl) return;
+
+  try {
+    fetch(webhookUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(data)
+    }).catch(err => console.log('Feedback webhook notice:', err));
+  } catch (e) {
+    console.log('Feedback sync error:', e);
+  }
+}
+
