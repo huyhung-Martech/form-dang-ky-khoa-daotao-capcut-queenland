@@ -458,7 +458,7 @@ function exportToExcel() {
     return;
   }
 
-  const headers = ["STT", "Số Điện Thoại (Mã Định Danh)", "Mã Ghi Danh", "Họ và Tên", "Đội Nhóm / Khối Kinh Doanh", "Cơ Sở Học", "Trạng Thái Nộp Video", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
+  const headers = ["STT", "Số Điện Thoại (Mã Định Danh)", "Mã Ghi Danh", "Họ và Tên", "Phòng/Khối Kinh Doanh", "Cơ Sở Học", "Trạng Thái Nộp Video", "Link TikTok", "Mục Tiêu Khi Học", "Thời Gian Đăng Ký"];
   
   const rows = registrations.map((r, i) => [
     i + 1,
