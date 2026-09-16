@@ -11,7 +11,7 @@ Hệ thống Landing Page Đăng Ký và Bảng Quản Trị Thống Kê Ghi Dan
 * **Lộ trình 2 buổi thực chiến tinh gọn (Có Showcase sản phẩm):**
   * **Buổi 1:** *Khai Mở Giọng Nói, Kịch Bản AI & Bấm Máy Thực Hành Tại Chỗ* (Định vị cá nhân, Luyện hơi bụng 1:1, Kịch bản AI BĐS 60s, Quay A-roll, ★ Showcase sản phẩm đầu tay chiếu trực tiếp lên màn hình lớn).
   * **Buổi 2:** *Phù Thủy CapCut – Dựng Video Triệu View & Bật Kênh* (Jump cut, Overlays/bản đồ quy hoạch, Auto Caption, Thumbnail Canva, ★ Showcase tổng kết & xuất bản đồng loạt lên TikTok).
-* **Lịch học & 2 Địa điểm đào tạo (Ca Sáng 08:30 - 11:45):**
+* **Lịch học & 2 Địa điểm đào tạo (Ca Sáng 09:00 - 11:00):**
   * *Đợt 1:* Trụ sở 35 Lê Văn Lương (Thanh Xuân, Hà Nội) [Thứ Năm 17/09 & Thứ Sáu 18/09/2026].
   * *Đợt 2:* Tòa TechnoPark Tower (Vinhomes Ocean Park) [Tuần kế tiếp].
 * **Form ghi danh tiện lợi:** Cho phép tự nhập tên Khối/Đội nhóm kinh doanh tự do, kiểm tra số điện thoại chuẩn Việt Nam và cấp Mã ghi danh tự động.
